@@ -7,14 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
-  :root {
-    --bg:#0F0F1A; --surface:#1A1A2E; --surface2:#22223A; --surface3:#2A2A45;
-    --accent:#E85D26; --accent2:#FF7A45; --accent-dim:rgba(232,93,38,0.15);
-    --text:#F0F0F5; --text-muted:#8888AA; --text-dim:#555575; --border:#2E2E4E;
-    --green:#2ECC71; --yellow:#F39C12; --red:#E74C3C;
-    --radius:10px; --radius-sm:6px;
-  }
+  :root{--bg:#0F0F1A;--surface:#1A1A2E;--surface2:#22223A;--surface3:#2A2A45;--accent:#E85D26;--accent2:#FF7A45;--accent-dim:rgba(232,93,38,0.15);--text:#F0F0F5;--text-muted:#8888AA;--text-dim:#555575;--border:#2E2E4E;--green:#2ECC71;--yellow:#F39C12;--red:#E74C3C;--radius:10px;--radius-sm:6px;}
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;}
 
@@ -32,6 +25,25 @@
   .btn-sm{padding:5px 10px;font-size:12px;}
   .btn:disabled{opacity:0.4;cursor:not-allowed;}
 
+  /* SETUP SCREEN */
+  #setup-screen{flex:1;display:flex;align-items:center;justify-content:center;padding:40px;}
+  .setup-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:48px 40px;max-width:480px;width:100%;text-align:center;}
+  .setup-icon{font-size:32px;margin-bottom:20px;}
+  .setup-card h2{font-size:20px;font-weight:600;margin-bottom:8px;letter-spacing:-0.02em;}
+  .setup-card p{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:28px;}
+  .setup-field{text-align:left;margin-bottom:16px;}
+  .setup-field label{display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:500;}
+  .setup-field input{width:100%;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;transition:border-color 0.2s;}
+  .setup-field input:focus{border-color:var(--accent);}
+  .setup-field .hint{font-size:11px;color:var(--text-dim);margin-top:4px;}
+  .setup-steps{text-align:left;background:var(--surface2);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:24px;}
+  .setup-steps p{font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:500;}
+  .setup-steps ol{padding-left:16px;}
+  .setup-steps li{font-size:12px;color:var(--text-dim);line-height:1.8;}
+  .setup-steps a{color:var(--accent);text-decoration:none;}
+  .setup-steps a:hover{text-decoration:underline;}
+
+  /* HOME */
   #home-screen{flex:1;display:flex;flex-direction:column;align-items:center;padding:48px 24px;gap:24px;}
   .home-top{display:flex;gap:24px;width:100%;max-width:960px;align-items:flex-start;}
 
@@ -57,7 +69,6 @@
   .history-loading{display:flex;align-items:center;gap:10px;color:var(--text-dim);font-size:13px;padding:20px 0;}
   .history-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:200px;color:var(--text-dim);font-size:13px;gap:8px;}
   .history-empty .icon{font-size:28px;}
-
   .history-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:8px;cursor:pointer;transition:all 0.15s;background:var(--surface2);}
   .history-item:hover{border-color:var(--accent);background:var(--accent-dim);}
   .history-item-icon{font-size:20px;flex-shrink:0;}
@@ -68,9 +79,9 @@
   .history-item-delete{background:none;border:none;cursor:pointer;color:var(--text-dim);font-size:14px;padding:4px;border-radius:4px;transition:all 0.15s;flex-shrink:0;}
   .history-item-delete:hover{color:var(--red);background:rgba(231,76,60,0.1);}
 
+  /* APP */
   #app{display:none;flex:1;overflow:hidden;height:calc(100vh - 56px);}
   .app-inner{display:flex;height:100%;}
-
   .sidebar{width:280px;min-width:280px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
   .sidebar-header{padding:16px;border-bottom:1px solid var(--border);}
   .sidebar-header h2{font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;}
@@ -80,7 +91,6 @@
   .sidebar-list{flex:1;overflow-y:auto;padding:8px;}
   .sidebar-list::-webkit-scrollbar{width:4px;}
   .sidebar-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
-
   .lecture-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);cursor:pointer;transition:all 0.15s;margin-bottom:2px;border:1px solid transparent;}
   .lecture-item:hover{background:var(--surface2);}
   .lecture-item.active{background:var(--accent-dim);border-color:rgba(232,93,38,0.3);}
@@ -92,25 +102,21 @@
   .lecture-bar-fill{height:100%;border-radius:2px;transition:width 0.4s ease;}
   .lecture-score{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-muted);flex-shrink:0;width:28px;text-align:right;}
   .lecture-count{font-size:10px;color:var(--text-dim);flex-shrink:0;}
-
   .main{flex:1;overflow-y:auto;padding:28px 32px;background:var(--bg);}
   .main::-webkit-scrollbar{width:6px;}
   .main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
   .empty-state{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-dim);gap:12px;}
   .empty-state .icon{font-size:40px;}
-
   .lecture-header{margin-bottom:24px;}
   .lecture-header-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:12px;}
   .lecture-header h2{font-size:22px;font-weight:700;letter-spacing:-0.02em;flex:1;}
   .response-badge{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--text-muted);flex-shrink:0;margin-top:4px;}
-
   .vs-avg-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border);font-size:12px;color:var(--text-muted);}
   .vs-avg-score{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--text);}
   .vs-avg-delta{font-size:12px;font-family:'JetBrains Mono',monospace;font-weight:600;padding:2px 6px;border-radius:4px;}
   .delta-pos{color:var(--green);background:rgba(46,204,113,0.12);}
   .delta-neg{color:var(--red);background:rgba(231,76,60,0.12);}
   .delta-neu{color:var(--text-muted);background:var(--surface3);}
-
   .section-label{font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin:24px 0 12px;}
   .ratings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
   .rating-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
@@ -120,7 +126,6 @@
   .rating-pct{font-size:12px;font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--text);width:36px;text-align:right;flex-shrink:0;}
   .rating-bar-bg{width:80px;height:6px;background:var(--surface3);border-radius:3px;overflow:hidden;flex-shrink:0;}
   .rating-bar-fill{height:100%;border-radius:3px;transition:width 0.5s ease;}
-
   .insights-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px;}
   .insights-loading{padding:20px;display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:13px;}
   .spinner{width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;}
@@ -133,9 +138,7 @@
   .insights-list li:last-child{border-bottom:none;}
   .insights-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:11px;top:5px;}
   .no-api-notice{padding:14px 20px;font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
-
   .readonly-badge{background:rgba(52,152,219,0.15);color:#3498DB;border:1px solid rgba(52,152,219,0.3);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:500;}
-
   .toast{position:fixed;bottom:24px;right:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;font-size:13px;color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,0.4);display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(8px);transition:all 0.25s;pointer-events:none;z-index:200;}
   .toast.show{opacity:1;transform:translateY(0);}
   .toast.success .toast-icon{color:var(--green);}
@@ -151,7 +154,38 @@
   <div class="header-actions" id="header-actions"></div>
 </header>
 
-<div id="home-screen">
+<!-- SETUP SCREEN (first time) -->
+<div id="setup-screen" style="display:none">
+  <div class="setup-card">
+    <div class="setup-icon">🔑</div>
+    <h2>Одноразове налаштування</h2>
+    <p>Для збереження звітів в спільний архів команди потрібен GitHub токен.<br>Він зберігається тільки у твоєму браузері і ніколи не потрапляє в код.</p>
+
+    <div class="setup-steps">
+      <p>Як отримати токен:</p>
+      <ol>
+        <li>Іди на <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">github.com/settings/personal-access-tokens/new</a></li>
+        <li>Token name: <strong>ga-lecture-analyzer</strong></li>
+        <li>Repository access: <strong>No access</strong></li>
+        <li>Permissions → вкладка <strong>Account</strong> → Gists: <strong>Read and write</strong></li>
+        <li>Generate token → скопіюй</li>
+      </ol>
+    </div>
+
+    <div class="setup-field">
+      <label>GitHub Personal Access Token</label>
+      <input type="password" id="setup-token-input" placeholder="github_pat_..." autocomplete="off">
+      <p class="hint">Зберігається в localStorage твого браузера. Не передається нікуди крім api.github.com.</p>
+    </div>
+
+    <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="saveToken()">
+      Зберегти та продовжити →
+    </button>
+  </div>
+</div>
+
+<!-- HOME SCREEN -->
+<div id="home-screen" style="display:none">
   <div class="home-top">
     <div class="upload-card">
       <div class="upload-icon">📊</div>
@@ -173,7 +207,10 @@
     <div class="history-panel">
       <div class="history-panel-header">
         <h2>📁 Архів звітів команди</h2>
-        <button class="btn btn-ghost btn-sm" onclick="loadHistory()">↻ Оновити</button>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-ghost btn-sm" onclick="loadHistory()">↻ Оновити</button>
+          <button class="btn btn-ghost btn-sm" onclick="resetToken()" title="Змінити токен">🔑</button>
+        </div>
       </div>
       <div id="history-list">
         <div class="history-loading"><div class="spinner"></div> Завантаження архіву…</div>
@@ -182,7 +219,8 @@
   </div>
 </div>
 
-<div id="app">
+<!-- APP -->
+<div id="app" style="display:none">
   <div class="app-inner">
     <nav class="sidebar">
       <div class="sidebar-header">
@@ -206,47 +244,72 @@
 </div>
 
 <script>
-// ── CONFIG ──────────────────────────────────────
-const GITHUB_TOKEN = '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';
+// ── CONFIG ───────────────────────────────────────
 const GIST_FILENAME = 'ga-lecture-reports.json';
-let GIST_ID = null; // discovered or created at runtime
+const TOKEN_KEY     = 'lfa_github_token';
+const APIKEY_KEY    = 'lfa_anthropic_key';
+let GIST_ID = null;
+let githubToken = '';
 
-// ── SCORE MAPS ──────────────────────────────────
+// ── SCORE MAPS ───────────────────────────────────
 const LECTURE_SCORE_MAP = {'Сподобалась повністю':5,'Сподобалась, але є зауваження':3,'50/50':2.5,'Не дуже сподобалась':1.5,'Зовсім не сподобалась':0};
 const USEFUL_SCORE_MAP  = {'Дуже корисна':5,'Достатньо корисна':4,'Складно сказати':2.5,'Не дуже корисна':1.5,'Зовсім не корисна':0};
 const COMFORT_SCORE_MAP = {'Дуже комфортно':5,'Достатньо комфортно':4,'Складно сказати':2.5,'Не дуже комфортно':1.5,'Зовсім некомфортно':0};
 const COL_COLORS = ['#2ECC71','#2ECC71','#F39C12','#E74C3C','#E74C3C'];
 
 // ── STATE ────────────────────────────────────────
-let allData={}, lectureStats=[], programAvg={};
-let activeSheet=null, apiKey='', insightCache={};
-let currentFilename='', isReadonly=false;
+let allData={},lectureStats=[],programAvg={};
+let activeSheet=null,apiKey='',insightCache={};
+let currentFilename='',isReadonly=false;
 
-// ── GIST API ────────────────────────────────────
-const GIST_HEADERS = {
-  'Authorization': `token ${GITHUB_TOKEN}`,
-  'Accept': 'application/vnd.github+json',
-  'Content-Type': 'application/json'
-};
+// ── TOKEN MANAGEMENT ─────────────────────────────
+function saveToken() {
+  const val = document.getElementById('setup-token-input').value.trim();
+  if (!val || !val.startsWith('github')) {
+    showToast('Токен має починатись з "github"','error'); return;
+  }
+  localStorage.setItem(TOKEN_KEY, val);
+  githubToken = val;
+  // restore saved api key if any
+  apiKey = localStorage.getItem(APIKEY_KEY) || '';
+  if (apiKey) document.getElementById('api-key-input') && (document.getElementById('api-key-input').value = apiKey);
+  showHome();
+}
+
+function resetToken() {
+  if (!confirm('Скинути GitHub токен? Тобі треба буде ввести його знову.')) return;
+  localStorage.removeItem(TOKEN_KEY);
+  GIST_ID = null;
+  githubToken = '';
+  showSetup();
+}
+
+// ── GIST API ─────────────────────────────────────
+function gistHeaders() {
+  return {
+    'Authorization': `token ${githubToken}`,
+    'Accept': 'application/vnd.github+json',
+    'Content-Type': 'application/json'
+  };
+}
 
 async function findOrCreateGist() {
   if (GIST_ID) return GIST_ID;
-
-  // Search existing gists for our file
-  const resp = await fetch('https://api.github.com/gists?per_page=100', { headers: GIST_HEADERS });
-  if (!resp.ok) throw new Error('GitHub API: ' + resp.status);
+  const resp = await fetch('https://api.github.com/gists?per_page=100', { headers: gistHeaders() });
+  if (!resp.ok) {
+    if (resp.status === 401) { resetToken(); throw new Error('Токен недійсний — введи новий'); }
+    throw new Error('GitHub API: ' + resp.status);
+  }
   const gists = await resp.json();
   const found = gists.find(g => g.files && g.files[GIST_FILENAME]);
   if (found) { GIST_ID = found.id; return GIST_ID; }
 
-  // Create new gist
   const create = await fetch('https://api.github.com/gists', {
-    method: 'POST',
-    headers: GIST_HEADERS,
+    method:'POST', headers: gistHeaders(),
     body: JSON.stringify({
-      description: 'GA Lecture Feedback Analyzer — shared reports storage',
+      description:'GA Lecture Feedback Analyzer — shared reports',
       public: false,
-      files: { [GIST_FILENAME]: { content: JSON.stringify([]) } }
+      files:{ [GIST_FILENAME]:{ content: '[]' } }
     })
   });
   if (!create.ok) throw new Error('Не вдалось створити Gist');
@@ -255,31 +318,29 @@ async function findOrCreateGist() {
   return GIST_ID;
 }
 
-async function gistReadReports() {
+async function gistRead() {
   const id = await findOrCreateGist();
-  const resp = await fetch(`https://api.github.com/gists/${id}`, { headers: GIST_HEADERS });
+  const resp = await fetch(`https://api.github.com/gists/${id}`, { headers: gistHeaders() });
   if (!resp.ok) throw new Error('GitHub API: ' + resp.status);
   const gist = await resp.json();
-  const content = gist.files[GIST_FILENAME]?.content || '[]';
-  return JSON.parse(content);
+  return JSON.parse(gist.files[GIST_FILENAME]?.content || '[]');
 }
 
-async function gistWriteReports(reports) {
+async function gistWrite(reports) {
   const id = await findOrCreateGist();
   const resp = await fetch(`https://api.github.com/gists/${id}`, {
-    method: 'PATCH',
-    headers: GIST_HEADERS,
-    body: JSON.stringify({ files: { [GIST_FILENAME]: { content: JSON.stringify(reports) } } })
+    method:'PATCH', headers: gistHeaders(),
+    body: JSON.stringify({ files:{ [GIST_FILENAME]:{ content: JSON.stringify(reports) } } })
   });
   if (!resp.ok) throw new Error('Помилка запису в Gist');
 }
 
-// ── HISTORY ─────────────────────────────────────
+// ── HISTORY ──────────────────────────────────────
 async function loadHistory() {
   const container = document.getElementById('history-list');
   container.innerHTML = '<div class="history-loading"><div class="spinner"></div> Завантаження архіву…</div>';
   try {
-    const reports = await gistReadReports();
+    const reports = await gistRead();
     renderHistory(reports);
   } catch(err) {
     container.innerHTML = `<div class="history-empty"><div class="icon">⚠️</div><p>Не вдалось завантажити архів</p><p style="font-size:11px;color:var(--text-dim)">${err.message}</p></div>`;
@@ -298,7 +359,6 @@ function renderHistory(reports) {
     const time = new Date(r.savedAt).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'});
     const score = r.programAvg?.composite != null ? (+r.programAvg.composite).toFixed(1) : '—';
     const lectCount = r.lectureStats?.length || 0;
-    const dataStr = JSON.stringify(r).replace(/\\/g,'\\\\').replace(/"/g,'&quot;');
     return `<div class="history-item" onclick='openReport(${JSON.stringify(r)})'>
       <div class="history-item-icon">📊</div>
       <div class="history-item-info">
@@ -315,12 +375,9 @@ function renderHistory(reports) {
 }
 
 function openReport(report) {
-  currentFilename = report.filename;
-  programAvg      = report.programAvg;
-  insightCache    = report.insightCache || {};
-  lectureStats    = report.lectureStats;
-  isReadonly      = true;
-  allData         = {};
+  currentFilename=report.filename; programAvg=report.programAvg;
+  insightCache=report.insightCache||{}; lectureStats=report.lectureStats;
+  isReadonly=true; allData={};
   showApp();
 }
 
@@ -328,22 +385,22 @@ async function deleteReport(id, e) {
   e.stopPropagation();
   if (!confirm('Видалити цей звіт з архіву команди?')) return;
   try {
-    const reports = await gistReadReports();
+    const reports = await gistRead();
     const updated = reports.filter(r => r.id !== id);
-    await gistWriteReports(updated);
-    showToast('Звіт видалено', 'success');
+    await gistWrite(updated);
+    showToast('Звіт видалено','success');
     renderHistory(updated);
-  } catch(err) {
-    showToast('Помилка: ' + err.message, 'error');
-  }
+  } catch(err) { showToast('Помилка: '+err.message,'error'); }
 }
 
 async function saveCurrentReport() {
   if (!lectureStats.length) return;
   const btn = document.getElementById('save-btn');
   if (btn) { btn.disabled=true; btn.textContent='⏳ Зберігаємо…'; }
+  // save api key for convenience
+  if (apiKey) localStorage.setItem(APIKEY_KEY, apiKey);
   try {
-    const reports = await gistReadReports();
+    const reports = await gistRead();
     const report = {
       id: Date.now().toString(),
       filename: currentFilename,
@@ -351,51 +408,50 @@ async function saveCurrentReport() {
       programAvg,
       insightCache,
       lectureStats: lectureStats.map(l=>({
-        name:l.name, score:l.score, responses:l.responses,
-        s1:l.s1, s2:l.s2, s3:l.s3, d1:l.d1, d2:l.d2, d3:l.d3
+        name:l.name,score:l.score,responses:l.responses,
+        s1:l.s1,s2:l.s2,s3:l.s3,d1:l.d1,d2:l.d2,d3:l.d3
       }))
     };
-    // update if same filename exists, else append
     const idx = reports.findIndex(r => r.filename === currentFilename);
-    if (idx >= 0) reports[idx] = report; else reports.push(report);
-    await gistWriteReports(reports);
-    showToast('Звіт збережено в архів команди ✓', 'success');
+    if (idx >= 0) reports[idx]=report; else reports.push(report);
+    await gistWrite(reports);
+    showToast('Звіт збережено в архів команди ✓','success');
   } catch(err) {
-    showToast('Помилка збереження: ' + err.message, 'error');
+    showToast('Помилка збереження: '+err.message,'error');
   } finally {
     if (btn) { btn.disabled=false; btn.textContent='💾 Зберегти звіт'; }
   }
 }
 
 // ── UPLOAD ───────────────────────────────────────
-document.getElementById('file-input').addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); });
-const dropZone = document.getElementById('drop-zone');
-dropZone.addEventListener('dragover', e=>{e.preventDefault();dropZone.classList.add('drag-over');});
+document.getElementById('file-input').addEventListener('change',e=>{if(e.target.files[0])handleFile(e.target.files[0]);});
+const dropZone=document.getElementById('drop-zone');
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('drag-over');});
 dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop', e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
+dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
 
 function handleFile(file) {
   apiKey = document.getElementById('api-key-input').value.trim();
   const reader = new FileReader();
   reader.onload = e => {
     try {
-      const wb = XLSX.read(e.target.result,{type:'binary'});
+      const wb=XLSX.read(e.target.result,{type:'binary'});
       allData={};
       wb.SheetNames.forEach(name=>{
         const rows=XLSX.utils.sheet_to_json(wb.Sheets[name],{defval:''});
-        if(rows.length>0) allData[name]=rows;
+        if(rows.length>0)allData[name]=rows;
       });
       if(!Object.keys(allData).length){showToast('Файл не містить даних','error');return;}
-      currentFilename=file.name; isReadonly=false; insightCache={};
-      buildStats(); showApp();
-    } catch(err){showToast('Помилка читання: '+err.message,'error');}
+      currentFilename=file.name;isReadonly=false;insightCache={};
+      buildStats();showApp();
+    }catch(err){showToast('Помилка читання: '+err.message,'error');}
   };
   reader.readAsBinaryString(file);
 }
 
 // ── STATS ────────────────────────────────────────
-function detectCol(row,candidates){const keys=Object.keys(row);for(const c of candidates){const f=keys.find(k=>k.toLowerCase().includes(c.toLowerCase()));if(f)return f;}return null;}
-function colKey(rows,candidates){return(rows&&rows.length)?detectCol(rows[0],candidates):null;}
+function detectCol(row,c){const k=Object.keys(row);for(const x of c){const f=k.find(z=>z.toLowerCase().includes(x.toLowerCase()));if(f)return f;}return null;}
+function colKey(rows,c){return(rows&&rows.length)?detectCol(rows[0],c):null;}
 function distrib(rows,col,map){
   if(!col)return{};const counts={};let total=0;
   rows.forEach(r=>{const v=(r[col]||'').toString().trim();if(!v)return;counts[v]=(counts[v]||0)+1;total++;});
@@ -434,22 +490,34 @@ function buildStats(){
 }
 
 // ── SCREENS ──────────────────────────────────────
+function showSetup(){
+  document.getElementById('setup-screen').style.display='flex';
+  document.getElementById('home-screen').style.display='none';
+  document.getElementById('app').style.display='none';
+  document.getElementById('header-title').textContent='Lecture Feedback Analyzer';
+  document.getElementById('header-actions').innerHTML='';
+}
 function showHome(){
+  document.getElementById('setup-screen').style.display='none';
   document.getElementById('home-screen').style.display='flex';
   document.getElementById('app').style.display='none';
   document.getElementById('header-title').textContent='Lecture Feedback Analyzer';
   document.getElementById('header-actions').innerHTML='';
   document.getElementById('file-input').value='';
+  // restore api key
+  const saved=localStorage.getItem(APIKEY_KEY)||'';
+  if(saved)document.getElementById('api-key-input').value=saved;
   loadHistory();
 }
 function showApp(){
+  document.getElementById('setup-screen').style.display='none';
   document.getElementById('home-screen').style.display='none';
   document.getElementById('app').style.display='flex';
   document.getElementById('header-title').textContent=currentFilename;
   const el=document.getElementById('header-actions');
   if(isReadonly){
     el.innerHTML=`<span class="readonly-badge">📁 З архіву</span><button class="btn btn-ghost" onclick="showHome()">← Головна</button>`;
-  } else {
+  }else{
     el.innerHTML=`<button id="save-btn" class="btn btn-ghost btn-sm" onclick="saveCurrentReport()">💾 Зберегти звіт</button><button class="btn btn-ghost" onclick="showHome()">← Головна</button>`;
   }
   renderSidebar();
@@ -458,7 +526,6 @@ function showApp(){
 // ── SIDEBAR ──────────────────────────────────────
 function fmtScore(s){return s!=null?(+s).toFixed(1):'—';}
 function scoreToColor(s){return s>=3.5?'#2ECC71':s>=2?'#F39C12':'#E74C3C';}
-
 function renderSidebar(){
   document.getElementById('program-avg').innerHTML=`
     <div class="avg-chip">🎯 <strong>${fmtScore(programAvg.composite)}/5</strong> загалом</div>
@@ -494,13 +561,12 @@ function selectLecture(name){
   if(!lec)return;
   const rank=lectureStats.findIndex(l=>l.name===name)+1;
   const delta=programAvg.composite!=null?(lec.score-programAvg.composite):null;
-  const deltaHtml=delta!=null?`<span class="vs-avg-delta ${delta>0.1?'delta-pos':delta<-0.1?'delta-neg':'delta-neu'}">${delta>=0?'+':''}${delta.toFixed(2)} vs avg</span>`:'';
+  const dHtml=delta!=null?`<span class="vs-avg-delta ${delta>0.1?'delta-pos':delta<-0.1?'delta-neg':'delta-neu'}">${delta>=0?'+':''}${delta.toFixed(2)} vs avg</span>`:'';
   document.getElementById('main-content').innerHTML=`
     <div class="lecture-header">
       <div class="lecture-header-top"><h2>${name}</h2><span class="response-badge">${lec.responses} відповідей</span></div>
       <div class="vs-avg-row">
-        <span class="vs-avg-score">${(+lec.score).toFixed(2)}/5</span>
-        ${deltaHtml}
+        <span class="vs-avg-score">${(+lec.score).toFixed(2)}/5</span>${dHtml}
         <span style="color:var(--text-dim)">·</span>
         <span style="color:var(--text-muted);font-size:12px">#${rank} з ${lectureStats.length} лекцій</span>
       </div>
@@ -515,10 +581,10 @@ function selectLecture(name){
     <div id="insights-block"></div>`;
   if(insightCache[name]){
     document.getElementById('insights-block').innerHTML=insightCache[name];
-  } else if(apiKey&&!isReadonly){
+  }else if(apiKey&&!isReadonly){
     document.getElementById('insights-block').innerHTML=`<div class="insights-card"><div class="insights-loading"><div class="spinner"></div> Аналізую відгуки…</div></div>`;
     loadInsights(lec);
-  } else {
+  }else{
     document.getElementById('insights-block').innerHTML=`<div class="insights-card"><div class="no-api-notice">ℹ️ ${isReadonly?'AI-інсайти не збережені для цієї лекції.':'Додай Anthropic API key для AI-інсайтів.'}</div></div>`;
   }
 }
@@ -559,7 +625,7 @@ async function loadInsights(lec){
 ${textData}
 Поверни ТІЛЬКИ валідний JSON:
 {"useful":["інсайт"],"improve":["рекомендація"],"uncovered":["тема"],"vibe":"загальний тон"}
-Правила: конкретно, українською, max 5 пунктів у масиві, порожній розділ = [].`;
+Правила: конкретно, українською, max 5 пунктів у масиві, порожній = [].`;
   try{
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
@@ -570,14 +636,11 @@ ${textData}
     if(!resp.ok)throw new Error(data.error?.message||'API error');
     const parsed=JSON.parse(data.content.find(b=>b.type==='text')?.text.replace(/```json|```/g,'').trim());
     const html=buildInsightsHtml(parsed);
-    document.getElementById('insights-block').innerHTML=html;
-    insightCache[lec.name]=html;
+    document.getElementById('insights-block').innerHTML=html;insightCache[lec.name]=html;
   }catch(err){
-    const html=`<div class="insights-card"><div class="no-api-notice">⚠️ ${err.message}</div></div>`;
-    document.getElementById('insights-block').innerHTML=html;
+    document.getElementById('insights-block').innerHTML=`<div class="insights-card"><div class="no-api-notice">⚠️ ${err.message}</div></div>`;
   }
 }
-
 function buildInsightsHtml(d){
   const sec=(title,icon,items)=>items?.length?`<div class="insights-section"><div class="insights-section-title"><span>${icon}</span>${title}</div><ul class="insights-list">${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`:'';
   const vibe=d.vibe?`<div class="insights-section"><div class="insights-section-title"><span>🌡</span>Загальний тон</div><p style="font-size:13px;color:var(--text);line-height:1.6">${d.vibe}</p></div>`:'';
@@ -597,7 +660,8 @@ function showToast(msg,type='success'){
 }
 
 // ── INIT ─────────────────────────────────────────
-showHome();
+githubToken = localStorage.getItem(TOKEN_KEY) || '';
+if (githubToken) { showHome(); } else { showSetup(); }
 </script>
 </body>
 </html>
