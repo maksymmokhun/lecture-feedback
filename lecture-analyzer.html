@@ -9,587 +9,201 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
   :root {
-    --bg: #0F0F1A;
-    --surface: #1A1A2E;
-    --surface2: #22223A;
-    --surface3: #2A2A45;
-    --accent: #E85D26;
-    --accent2: #FF7A45;
-    --accent-dim: rgba(232, 93, 38, 0.15);
-    --text: #F0F0F5;
-    --text-muted: #8888AA;
-    --text-dim: #555575;
-    --border: #2E2E4E;
-    --green: #2ECC71;
-    --yellow: #F39C12;
-    --red: #E74C3C;
-    --blue: #3498DB;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --bg: #0F0F1A; --surface: #1A1A2E; --surface2: #22223A; --surface3: #2A2A45;
+    --accent: #E85D26; --accent2: #FF7A45; --accent-dim: rgba(232,93,38,0.15);
+    --text: #F0F0F5; --text-muted: #8888AA; --text-dim: #555575; --border: #2E2E4E;
+    --green: #2ECC71; --yellow: #F39C12; --red: #E74C3C;
+    --radius: 10px; --radius-sm: 6px;
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* HEADER */
+  .header { background:var(--surface); border-bottom:1px solid var(--border); padding:0 24px; height:56px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:100; }
+  .header-logo { font-size:13px; font-weight:600; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; }
+  .header-title { font-size:13px; color:var(--text-muted); font-weight:400; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:400px; }
+  .header-sep { color:var(--text-dim); }
+  .header-actions { margin-left:auto; display:flex; gap:8px; align-items:center; flex-shrink:0; }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  /* BUTTONS */
+  .btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:var(--radius-sm); font-size:13px; font-weight:500; cursor:pointer; border:none; transition:all 0.15s; font-family:'Inter',sans-serif; }
+  .btn-primary { background:var(--accent); color:white; }
+  .btn-primary:hover { background:var(--accent2); }
+  .btn-ghost { background:var(--surface3); color:var(--text-muted); border:1px solid var(--border); }
+  .btn-ghost:hover { color:var(--text); border-color:var(--text-dim); }
+  .btn-sm { padding:5px 10px; font-size:12px; }
+  .btn:disabled { opacity:0.4; cursor:not-allowed; }
 
-  /* ── HEADER ── */
-  .header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .header-logo {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .header-title {
-    font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 400;
-  }
-  .header-sep { color: var(--text-dim); }
-  .header-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  /* HOME */
+  #home-screen { flex:1; display:flex; flex-direction:column; align-items:center; padding:48px 24px; gap:24px; }
+  .home-top { display:flex; gap:24px; width:100%; max-width:960px; align-items:flex-start; }
 
-  /* ── UPLOAD STATE ── */
-  #upload-screen {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-  }
-  .upload-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 60px 48px;
-    max-width: 520px;
-    width: 100%;
-    text-align: center;
-  }
-  .upload-icon {
-    width: 64px;
-    height: 64px;
-    background: var(--accent-dim);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    font-size: 28px;
-  }
-  .upload-card h1 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .upload-card p {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 32px;
-  }
-  .upload-drop-zone {
-    border: 2px dashed var(--border);
-    border-radius: var(--radius);
-    padding: 32px;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-bottom: 16px;
-  }
-  .upload-drop-zone:hover, .upload-drop-zone.drag-over {
-    border-color: var(--accent);
-    background: var(--accent-dim);
-  }
-  .upload-drop-zone p { margin-bottom: 12px; font-size: 14px; color: var(--text-muted); }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    transition: all 0.15s;
-    font-family: 'Inter', sans-serif;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-  }
-  .btn-primary:hover { background: var(--accent2); }
-  .btn-ghost {
-    background: var(--surface3);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-  }
-  .btn-ghost:hover { color: var(--text); border-color: var(--text-dim); }
-  .upload-hint { font-size: 12px; color: var(--text-dim); }
-  #file-input { display: none; }
+  .upload-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:36px 32px; width:380px; min-width:340px; text-align:center; }
+  .upload-icon { width:56px; height:56px; background:var(--accent-dim); border-radius:14px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:24px; }
+  .upload-card h2 { font-size:18px; font-weight:600; margin-bottom:6px; letter-spacing:-0.02em; }
+  .upload-card > p { font-size:13px; color:var(--text-muted); line-height:1.5; margin-bottom:24px; }
+  .upload-drop-zone { border:2px dashed var(--border); border-radius:var(--radius); padding:24px; cursor:pointer; transition:all 0.2s; margin-bottom:16px; }
+  .upload-drop-zone:hover,.upload-drop-zone.drag-over { border-color:var(--accent); background:var(--accent-dim); }
+  .upload-drop-zone p { margin-bottom:10px; font-size:13px; color:var(--text-muted); }
+  .upload-hint { font-size:11px; color:var(--text-dim); margin-top:8px; }
+  #file-input { display:none; }
 
-  /* ── API KEY INPUT ── */
-  .api-input-wrap {
-    position: relative;
-    margin-top: 24px;
-    text-align: left;
-  }
-  .api-input-wrap label {
-    display: block;
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
-  .api-input-wrap input {
-    width: 100%;
-    padding: 10px 14px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text);
-    font-size: 13px;
-    font-family: 'JetBrains Mono', monospace;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .api-input-wrap input:focus { border-color: var(--accent); }
-  .api-input-wrap .hint { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+  .api-input-wrap { margin-top:20px; text-align:left; }
+  .api-input-wrap label { display:block; font-size:12px; color:var(--text-muted); margin-bottom:6px; font-weight:500; }
+  .api-input-wrap input { width:100%; padding:9px 12px; background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-size:13px; font-family:'JetBrains Mono',monospace; outline:none; transition:border-color 0.2s; }
+  .api-input-wrap input:focus { border-color:var(--accent); }
+  .api-input-wrap .hint { font-size:11px; color:var(--text-dim); margin-top:4px; }
 
-  /* ── MAIN APP LAYOUT ── */
-  #app {
-    display: none;
-    flex: 1;
-    overflow: hidden;
-    height: calc(100vh - 56px);
-  }
-  .app-inner {
-    display: flex;
-    height: 100%;
-  }
+  /* HISTORY */
+  .history-panel { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; min-height:320px; }
+  .history-panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .history-panel-header h2 { font-size:13px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; }
+  .history-loading { display:flex; align-items:center; gap:10px; color:var(--text-dim); font-size:13px; padding:20px 0; }
+  .history-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; color:var(--text-dim); font-size:13px; gap:8px; }
+  .history-empty .icon { font-size:28px; }
 
-  /* ── SIDEBAR ── */
-  .sidebar {
-    width: 280px;
-    min-width: 280px;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .sidebar-header {
-    padding: 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .sidebar-header h2 {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-  }
-  .program-avg {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .avg-chip {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 11px;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .avg-chip strong { color: var(--text); font-size: 12px; }
+  .history-item { display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:8px; cursor:pointer; transition:all 0.15s; background:var(--surface2); }
+  .history-item:hover { border-color:var(--accent); background:var(--accent-dim); }
+  .history-item-icon { font-size:20px; flex-shrink:0; }
+  .history-item-info { flex:1; min-width:0; }
+  .history-item-name { font-size:14px; font-weight:500; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:3px; }
+  .history-item-meta { font-size:11px; color:var(--text-dim); display:flex; gap:10px; }
+  .history-item-score { font-size:15px; font-weight:700; font-family:'JetBrains Mono',monospace; color:var(--green); flex-shrink:0; }
+  .history-item-delete { background:none; border:none; cursor:pointer; color:var(--text-dim); font-size:14px; padding:4px; border-radius:4px; transition:all 0.15s; flex-shrink:0; }
+  .history-item-delete:hover { color:var(--red); background:rgba(231,76,60,0.1); }
+  .history-item-who { font-size:10px; color:var(--text-dim); background:var(--surface3); border-radius:3px; padding:1px 5px; }
 
-  .sidebar-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 8px;
-  }
-  .sidebar-list::-webkit-scrollbar { width: 4px; }
-  .sidebar-list::-webkit-scrollbar-track { background: transparent; }
-  .sidebar-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  /* APP */
+  #app { display:none; flex:1; overflow:hidden; height:calc(100vh - 56px); }
+  .app-inner { display:flex; height:100%; }
 
-  .lecture-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 10px;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: all 0.15s;
-    margin-bottom: 2px;
-    border: 1px solid transparent;
-  }
-  .lecture-item:hover { background: var(--surface2); }
-  .lecture-item.active {
-    background: var(--accent-dim);
-    border-color: rgba(232,93,38,0.3);
-  }
+  /* SIDEBAR */
+  .sidebar { width:280px; min-width:280px; background:var(--surface); border-right:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; }
+  .sidebar-header { padding:16px; border-bottom:1px solid var(--border); }
+  .sidebar-header h2 { font-size:11px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; }
+  .program-avg { display:flex; gap:8px; flex-wrap:wrap; }
+  .avg-chip { background:var(--surface2); border:1px solid var(--border); border-radius:20px; padding:4px 10px; font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
+  .avg-chip strong { color:var(--text); font-size:12px; }
+  .sidebar-list { flex:1; overflow-y:auto; padding:8px; }
+  .sidebar-list::-webkit-scrollbar { width:4px; }
+  .sidebar-list::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
 
-  .lecture-rank {
-    font-size: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text-dim);
-    width: 18px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-  .lecture-bar-wrap { flex: 1; min-width: 0; }
-  .lecture-name {
-    font-size: 12px;
-    color: var(--text);
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 4px;
-    line-height: 1.2;
-  }
-  .lecture-bar-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .lecture-bar-bg {
-    flex: 1;
-    height: 4px;
-    background: var(--surface3);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .lecture-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    transition: width 0.4s ease;
-  }
-  .lecture-score {
-    font-size: 11px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text-muted);
-    flex-shrink: 0;
-    width: 28px;
-    text-align: right;
-  }
-  .lecture-count {
-    font-size: 10px;
-    color: var(--text-dim);
-    flex-shrink: 0;
-  }
+  .lecture-item { display:flex; align-items:center; gap:10px; padding:10px; border-radius:var(--radius-sm); cursor:pointer; transition:all 0.15s; margin-bottom:2px; border:1px solid transparent; }
+  .lecture-item:hover { background:var(--surface2); }
+  .lecture-item.active { background:var(--accent-dim); border-color:rgba(232,93,38,0.3); }
+  .lecture-rank { font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--text-dim); width:18px; text-align:right; flex-shrink:0; }
+  .lecture-bar-wrap { flex:1; min-width:0; }
+  .lecture-name { font-size:12px; color:var(--text); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:4px; }
+  .lecture-bar-row { display:flex; align-items:center; gap:6px; }
+  .lecture-bar-bg { flex:1; height:4px; background:var(--surface3); border-radius:2px; overflow:hidden; }
+  .lecture-bar-fill { height:100%; border-radius:2px; transition:width 0.4s ease; }
+  .lecture-score { font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--text-muted); flex-shrink:0; width:28px; text-align:right; }
+  .lecture-count { font-size:10px; color:var(--text-dim); flex-shrink:0; }
 
-  /* ── MAIN CONTENT ── */
-  .main {
-    flex: 1;
-    overflow-y: auto;
-    padding: 28px 32px;
-    background: var(--bg);
-  }
-  .main::-webkit-scrollbar { width: 6px; }
-  .main::-webkit-scrollbar-track { background: transparent; }
-  .main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  /* MAIN */
+  .main { flex:1; overflow-y:auto; padding:28px 32px; background:var(--bg); }
+  .main::-webkit-scrollbar { width:6px; }
+  .main::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+  .empty-state { height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--text-dim); gap:12px; }
+  .empty-state .icon { font-size:40px; }
+  .empty-state p { font-size:14px; }
 
-  .empty-state {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dim);
-    gap: 12px;
-  }
-  .empty-state .icon { font-size: 40px; }
-  .empty-state p { font-size: 14px; }
+  .lecture-header { margin-bottom:24px; }
+  .lecture-header-top { display:flex; align-items:flex-start; gap:16px; margin-bottom:12px; }
+  .lecture-header h2 { font-size:22px; font-weight:700; letter-spacing:-0.02em; flex:1; }
+  .response-badge { background:var(--surface2); border:1px solid var(--border); border-radius:20px; padding:4px 12px; font-size:12px; color:var(--text-muted); flex-shrink:0; margin-top:4px; }
 
-  /* ── LECTURE DETAIL ── */
-  .lecture-header {
-    margin-bottom: 24px;
-  }
-  .lecture-header-top {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 12px;
-  }
-  .lecture-header h2 {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    flex: 1;
-  }
-  .response-badge {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 12px;
-    color: var(--text-muted);
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
+  .vs-avg-row { display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--surface); border-radius:var(--radius-sm); border:1px solid var(--border); font-size:12px; color:var(--text-muted); }
+  .vs-avg-score { font-size:20px; font-weight:700; font-family:'JetBrains Mono',monospace; color:var(--text); }
+  .vs-avg-delta { font-size:12px; font-family:'JetBrains Mono',monospace; font-weight:600; padding:2px 6px; border-radius:4px; }
+  .delta-pos { color:var(--green); background:rgba(46,204,113,0.12); }
+  .delta-neg { color:var(--red); background:rgba(231,76,60,0.12); }
+  .delta-neu { color:var(--text-muted); background:var(--surface3); }
 
-  /* vs avg bar */
-  .vs-avg-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    background: var(--surface);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-  .vs-avg-score {
-    font-size: 20px;
-    font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text);
-  }
-  .vs-avg-delta {
-    font-size: 12px;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-  .delta-pos { color: var(--green); background: rgba(46,204,113,0.12); }
-  .delta-neg { color: var(--red); background: rgba(231,76,60,0.12); }
-  .delta-neu { color: var(--text-muted); background: var(--surface3); }
+  .section-label { font-size:11px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin:24px 0 12px; }
+  .ratings-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px; }
+  .rating-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px; }
+  .rating-card-title { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; }
+  .rating-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .rating-label { font-size:12px; color:var(--text-muted); flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rating-pct { font-size:12px; font-family:'JetBrains Mono',monospace; font-weight:500; color:var(--text); width:36px; text-align:right; flex-shrink:0; }
+  .rating-bar-bg { width:80px; height:6px; background:var(--surface3); border-radius:3px; overflow:hidden; flex-shrink:0; }
+  .rating-bar-fill { height:100%; border-radius:3px; transition:width 0.5s ease; }
 
-  /* ── RATING CARDS ── */
-  .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin: 24px 0 12px;
-  }
-  .ratings-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  @media (max-width: 900px) {
-    .ratings-grid { grid-template-columns: 1fr; }
-  }
-  .rating-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px;
-  }
-  .rating-card-title {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 14px;
-  }
-  .rating-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-  }
-  .rating-label {
-    font-size: 12px;
-    color: var(--text-muted);
-    flex: 1;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .rating-pct {
-    font-size: 12px;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-    color: var(--text);
-    width: 36px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-  .rating-bar-bg {
-    width: 80px;
-    height: 6px;
-    background: var(--surface3);
-    border-radius: 3px;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .rating-bar-fill {
-    height: 100%;
-    border-radius: 3px;
-    transition: width 0.5s ease;
-  }
+  .insights-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:12px; }
+  .insights-loading { padding:20px; display:flex; align-items:center; gap:10px; color:var(--text-muted); font-size:13px; }
+  .spinner { width:16px; height:16px; border:2px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; flex-shrink:0; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .insights-section { padding:16px 20px; border-bottom:1px solid var(--border); }
+  .insights-section:last-child { border-bottom:none; }
+  .insights-section-title { font-size:11px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+  .insights-list { list-style:none; }
+  .insights-list li { font-size:13px; color:var(--text); line-height:1.6; padding:4px 0 4px 14px; position:relative; border-bottom:1px solid var(--border); }
+  .insights-list li:last-child { border-bottom:none; }
+  .insights-list li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:11px; top:5px; }
+  .no-api-notice { padding:14px 20px; font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:8px; }
+  .no-api-notice a { color:var(--accent); text-decoration:none; }
 
-  /* ── AI INSIGHTS ── */
-  .insights-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    margin-bottom: 12px;
-  }
-  .insights-loading {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-muted);
-    font-size: 13px;
-  }
-  .spinner {
-    width: 16px;
-    height: 16px;
-    border: 2px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    flex-shrink: 0;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .readonly-badge { background:rgba(52,152,219,0.15); color:#3498DB; border:1px solid rgba(52,152,219,0.3); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:500; }
 
-  .insights-section {
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-  }
-  .insights-section:last-child { border-bottom: none; }
-  .insights-section-title {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .insights-section-title .icon { font-size: 13px; }
-  .insights-list { list-style: none; }
-  .insights-list li {
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.6;
-    padding: 4px 0;
-    padding-left: 14px;
-    position: relative;
-    border-bottom: 1px solid var(--border);
-  }
-  .insights-list li:last-child { border-bottom: none; }
-  .insights-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 11px;
-    top: 5px;
-  }
-  .insights-empty {
-    font-size: 13px;
-    color: var(--text-dim);
-    font-style: italic;
-    padding: 4px 0;
-  }
-  .no-api-notice {
-    padding: 14px 20px;
-    font-size: 13px;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .no-api-notice a { color: var(--accent); text-decoration: none; }
-  .no-api-notice a:hover { text-decoration: underline; }
-
-  /* ── SCORE COLOR HELPERS ── */
-  .score-bar-color-high { background: var(--green); }
-  .score-bar-color-mid  { background: var(--yellow); }
-  .score-bar-color-low  { background: var(--red); }
+  /* TOAST */
+  .toast { position:fixed; bottom:24px; right:24px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 18px; font-size:13px; color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,0.4); display:flex; align-items:center; gap:10px; opacity:0; transform:translateY(8px); transition:all 0.25s; pointer-events:none; z-index:200; }
+  .toast.show { opacity:1; transform:translateY(0); }
+  .toast.success .toast-icon { color:var(--green); }
+  .toast.error .toast-icon { color:var(--red); }
 </style>
 </head>
 <body>
 
-<!-- UPLOAD SCREEN -->
-<div id="upload-screen">
-  <div class="upload-card">
-    <div class="upload-icon">📊</div>
-    <h1>Lecture Feedback Analyzer</h1>
-    <p>Завантаж Excel-файл з відгуками студентів.<br>Кожна вкладка = одна лекція.</p>
+<header class="header" id="main-header">
+  <span class="header-logo">GA</span>
+  <span class="header-sep">·</span>
+  <span class="header-title" id="header-title">Lecture Feedback Analyzer</span>
+  <div class="header-actions" id="header-actions"></div>
+</header>
 
-    <div class="upload-drop-zone" id="drop-zone">
-      <p>Перетягни файл сюди або</p>
-      <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
-        📂 Вибрати файл
-      </button>
-      <input type="file" id="file-input" accept=".xlsx,.xls,.csv">
-      <p class="upload-hint" style="margin-top:10px">Підтримується .xlsx / .xls</p>
+<!-- HOME -->
+<div id="home-screen">
+  <div class="home-top">
+    <div class="upload-card">
+      <div class="upload-icon">📊</div>
+      <h2>Новий аналіз</h2>
+      <p>Завантаж Excel-файл з відгуками.<br>Кожна вкладка = одна лекція.</p>
+      <div class="upload-drop-zone" id="drop-zone">
+        <p>Перетягни файл сюди або</p>
+        <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">📂 Вибрати файл</button>
+        <input type="file" id="file-input" accept=".xlsx,.xls">
+        <p class="upload-hint" style="margin-top:10px">Підтримується .xlsx / .xls</p>
+      </div>
+      <div class="api-input-wrap">
+        <label>Anthropic API Key (для AI-інсайтів)</label>
+        <input type="password" id="api-key-input" placeholder="sk-ant-..." autocomplete="off">
+        <p class="hint">Зберігається тільки в пам'яті браузера.</p>
+      </div>
     </div>
 
-    <div class="api-input-wrap">
-      <label>Anthropic API Key (для AI-інсайтів)</label>
-      <input type="password" id="api-key-input" placeholder="sk-ant-..." autocomplete="off">
-      <p class="hint">Ключ зберігається тільки в пам'яті браузера. Без нього статистика працює, AI-блок — ні.</p>
+    <div class="history-panel">
+      <div class="history-panel-header">
+        <h2>📁 Архів звітів команди</h2>
+        <button class="btn btn-ghost btn-sm" onclick="loadHistory()">↻ Оновити</button>
+      </div>
+      <div id="history-list">
+        <div class="history-loading"><div class="spinner"></div> Завантаження архіву…</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- MAIN APP -->
-<header class="header" id="app-header" style="display:none">
-  <span class="header-logo">GA</span>
-  <span class="header-sep">·</span>
-  <span class="header-title" id="header-filename">Lecture Feedback</span>
-  <div class="header-actions">
-    <button class="btn btn-ghost" onclick="resetApp()">↩ Інший файл</button>
-  </div>
-</header>
-
+<!-- APP -->
 <div id="app">
   <div class="app-inner">
-    <!-- SIDEBAR -->
     <nav class="sidebar">
       <div class="sidebar-header">
         <h2>Рейтинг лекцій</h2>
-        <div class="program-avg" id="program-avg">
-          <!-- filled by JS -->
-        </div>
+        <div class="program-avg" id="program-avg"></div>
       </div>
-      <div class="sidebar-list" id="sidebar-list">
-        <!-- filled by JS -->
-      </div>
+      <div class="sidebar-list" id="sidebar-list"></div>
     </nav>
-
-    <!-- MAIN -->
     <main class="main" id="main-content">
       <div class="empty-state">
         <div class="icon">👈</div>
@@ -599,94 +213,182 @@
   </div>
 </div>
 
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toast-icon">✓</span>
+  <span id="toast-msg"></span>
+</div>
+
 <script>
-// ─────────────────────────────────────────────
-// CONSTANTS
-// ─────────────────────────────────────────────
+// ── CONFIG ──────────────────────────────────────
+const APPS_SCRIPT_URL = 'https://script.google.com/a/macros/gen.tech/s/AKfycbxat7AGqL2ayWWUyHJZtkUNNkk7fcwxV5zP29YG39KHbnCIUIrJpgUs_6RSGwFqDi2r8A/exec';
 
-// Scale: maps text answer → numeric score for ranking
+// ── SCORE MAPS ──────────────────────────────────
 const LECTURE_SCORE_MAP = {
-  'Сподобалась повністю': 5,
-  'Сподобалась, але є зауваження': 3,
-  '50/50': 2.5,
-  'Не дуже сподобалась': 1.5,
-  'Зовсім не сподобалась': 0
+  'Сподобалась повністю':5,'Сподобалась, але є зауваження':3,
+  '50/50':2.5,'Не дуже сподобалась':1.5,'Зовсім не сподобалась':0
 };
-
 const USEFUL_SCORE_MAP = {
-  'Дуже корисна': 5,
-  'Достатньо корисна': 4,
-  'Складно сказати': 2.5,
-  'Не дуже корисна': 1.5,
-  'Зовсім не корисна': 0
+  'Дуже корисна':5,'Достатньо корисна':4,
+  'Складно сказати':2.5,'Не дуже корисна':1.5,'Зовсім не корисна':0
 };
-
 const COMFORT_SCORE_MAP = {
-  'Дуже комфортно': 5,
-  'Достатньо комфортно': 4,
-  'Складно сказати': 2.5,
-  'Не дуже комфортно': 1.5,
-  'Зовсім некомфортно': 0
+  'Дуже комфортно':5,'Достатньо комфортно':4,
+  'Складно сказати':2.5,'Не дуже комфортно':1.5,'Зовсім некомфортно':0
 };
+const COL_COLORS = ['#2ECC71','#2ECC71','#F39C12','#E74C3C','#E74C3C'];
 
-// Colors for positive/mid/neg within bars
-const COL1_COLORS = ['#2ECC71','#2ECC71','#F39C12','#E74C3C','#E74C3C'];
-const COL2_COLORS = ['#2ECC71','#2ECC71','#F39C12','#E74C3C','#E74C3C'];
-const COL3_COLORS = ['#2ECC71','#2ECC71','#F39C12','#E74C3C','#E74C3C'];
+// ── STATE ────────────────────────────────────────
+let allData = {}, lectureStats = [], programAvg = {};
+let activeSheet = null, apiKey = '', insightCache = {};
+let currentFilename = '', isReadonly = false;
 
-// ─────────────────────────────────────────────
-// STATE
-// ─────────────────────────────────────────────
-let allData     = {}; // { sheetName: [ {row}, ... ] }
-let lectureStats = []; // sorted list
-let programAvg  = {};
-let activeSheet = null;
-let apiKey      = '';
-let insightCache = {}; // { sheetName: html }
+// ── SHEETS API ──────────────────────────────────
+async function sheetsGet() {
+  const resp = await fetch(APPS_SCRIPT_URL, { credentials: 'include' });
+  if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  const data = await resp.json();
+  if (!data.ok) throw new Error(data.error || 'Apps Script error');
+  return data.reports || [];
+}
 
-// ─────────────────────────────────────────────
-// UPLOAD / PARSE
-// ─────────────────────────────────────────────
-document.getElementById('file-input').addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file) handleFile(file);
+async function sheetsPost(body) {
+  const resp = await fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    credentials: 'include',
+    body: JSON.stringify(body)
+  });
+  if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  const data = await resp.json();
+  if (!data.ok) throw new Error(data.error || 'Apps Script error');
+  return data;
+}
+
+// ── HISTORY ──────────────────────────────────────
+async function loadHistory() {
+  const container = document.getElementById('history-list');
+  container.innerHTML = '<div class="history-loading"><div class="spinner"></div> Завантаження архіву…</div>';
+  try {
+    const reports = await sheetsGet();
+    renderHistory(reports);
+  } catch(err) {
+    container.innerHTML = `<div class="history-empty"><div class="icon">⚠️</div><p>Не вдалось завантажити архів</p><p style="font-size:11px;color:var(--text-dim)">${err.message}</p><p style="font-size:11px;color:var(--text-dim)">Переконайся що ти залогінений у браузері під акаунтом @gen.tech</p></div>`;
+  }
+}
+
+function renderHistory(reports) {
+  const container = document.getElementById('history-list');
+  if (!reports.length) {
+    container.innerHTML = `<div class="history-empty"><div class="icon">🗂</div><p>Архів порожній</p><p style="font-size:11px;color:var(--text-dim)">Завантаж файл і натисни "Зберегти звіт"</p></div>`;
+    return;
+  }
+  const sorted = [...reports].sort((a,b) => b.savedAt.localeCompare(a.savedAt));
+  container.innerHTML = sorted.map(r => {
+    const date = new Date(r.savedAt).toLocaleDateString('uk-UA',{day:'numeric',month:'short',year:'numeric'});
+    const time = new Date(r.savedAt).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'});
+    const score = r.programAvg?.composite != null ? (+r.programAvg.composite).toFixed(1) : '—';
+    const lectCount = r.lectureStats?.length || 0;
+    const who = r.savedBy || '';
+    return `<div class="history-item" onclick="openReport(${JSON.stringify(r).replace(/"/g,'&quot;')})">
+      <div class="history-item-icon">📊</div>
+      <div class="history-item-info">
+        <div class="history-item-name">${r.filename}</div>
+        <div class="history-item-meta">
+          <span>📅 ${date}, ${time}</span>
+          <span>📚 ${lectCount} лекцій</span>
+          ${who ? `<span class="history-item-who">👤 ${who}</span>` : ''}
+        </div>
+      </div>
+      <div class="history-item-score">${score}</div>
+      <button class="history-item-delete" onclick="deleteReport('${r.id}',event)" title="Видалити">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function openReport(report) {
+  currentFilename = report.filename;
+  programAvg      = report.programAvg;
+  insightCache    = report.insightCache || {};
+  lectureStats    = report.lectureStats;
+  isReadonly      = true;
+  allData         = {};
+  showApp();
+}
+
+async function deleteReport(id, e) {
+  e.stopPropagation();
+  if (!confirm('Видалити цей звіт з архіву?')) return;
+  try {
+    await sheetsPost({ action: 'delete', id });
+    showToast('Звіт видалено', 'success');
+    loadHistory();
+  } catch(err) {
+    showToast('Помилка видалення: ' + err.message, 'error');
+  }
+}
+
+async function saveCurrentReport() {
+  if (!lectureStats.length) return;
+  const btn = document.getElementById('save-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Зберігаємо…'; }
+
+  const report = {
+    id: Date.now().toString(),
+    filename: currentFilename,
+    savedAt: new Date().toISOString(),
+    savedBy: '', // браузер не знає email без auth — залишаємо порожнім
+    programAvg,
+    insightCache,
+    lectureStats: lectureStats.map(l => ({
+      name:l.name, score:l.score, responses:l.responses,
+      s1:l.s1, s2:l.s2, s3:l.s3, d1:l.d1, d2:l.d2, d3:l.d3
+    }))
+  };
+
+  try {
+    await sheetsPost({ action: 'save', report });
+    showToast('Звіт збережено в архів команди ✓', 'success');
+  } catch(err) {
+    showToast('Помилка збереження: ' + err.message, 'error');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = '💾 Зберегти звіт'; }
+  }
+}
+
+// ── UPLOAD ───────────────────────────────────────
+document.getElementById('file-input').addEventListener('change', e => {
+  if (e.target.files[0]) handleFile(e.target.files[0]);
 });
-
 const dropZone = document.getElementById('drop-zone');
-dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
 dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop', (e) => {
-  e.preventDefault();
-  dropZone.classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (file) handleFile(file);
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
 });
 
 function handleFile(file) {
   apiKey = document.getElementById('api-key-input').value.trim();
   const reader = new FileReader();
-  reader.onload = (e) => {
-    const wb = XLSX.read(e.target.result, { type: 'binary' });
-    allData = {};
-    wb.SheetNames.forEach(name => {
-      const rows = XLSX.utils.sheet_to_json(wb.Sheets[name], { defval: '' });
-      if (rows.length > 0) allData[name] = rows;
-    });
-    if (Object.keys(allData).length === 0) {
-      alert('Файл не містить даних. Перевір структуру.');
-      return;
-    }
-    buildStats();
-    showApp(file.name);
+  reader.onload = e => {
+    try {
+      const wb = XLSX.read(e.target.result, { type:'binary' });
+      allData = {};
+      wb.SheetNames.forEach(name => {
+        const rows = XLSX.utils.sheet_to_json(wb.Sheets[name], { defval:'' });
+        if (rows.length > 0) allData[name] = rows;
+      });
+      if (!Object.keys(allData).length) { showToast('Файл не містить даних','error'); return; }
+      currentFilename = file.name;
+      isReadonly = false;
+      insightCache = {};
+      buildStats();
+      showApp();
+    } catch(err) { showToast('Помилка читання файлу: ' + err.message,'error'); }
   };
   reader.readAsBinaryString(file);
 }
 
-// ─────────────────────────────────────────────
-// STATS CALCULATION
-// ─────────────────────────────────────────────
-
-// Detect column name by checking partial match
+// ── STATS ────────────────────────────────────────
 function detectCol(row, candidates) {
   const keys = Object.keys(row);
   for (const c of candidates) {
@@ -695,361 +397,231 @@ function detectCol(row, candidates) {
   }
   return null;
 }
-
 function colKey(rows, candidates) {
-  if (!rows || rows.length === 0) return null;
-  return detectCol(rows[0], candidates);
+  return (rows && rows.length) ? detectCol(rows[0], candidates) : null;
 }
-
 function distrib(rows, col, map) {
   if (!col) return {};
-  const counts = {};
-  let total = 0;
+  const counts = {}; let total = 0;
   rows.forEach(r => {
-    const v = (r[col] || '').toString().trim();
+    const v = (r[col]||'').toString().trim();
     if (!v) return;
-    counts[v] = (counts[v] || 0) + 1;
-    total++;
+    counts[v] = (counts[v]||0)+1; total++;
   });
+  if (!total) return {};
   const result = {};
-  // preserve order from map
-  const orderedKeys = Object.keys(map).length ? Object.keys(map) : Object.keys(counts);
-  orderedKeys.forEach(k => {
-    if (counts[k]) result[k] = { count: counts[k], pct: Math.round((counts[k]/total)*100) };
-  });
-  // add any keys not in map
-  Object.keys(counts).forEach(k => {
-    if (!result[k]) result[k] = { count: counts[k], pct: Math.round((counts[k]/total)*100) };
-  });
+  Object.keys(map).forEach(k => { if (counts[k]) result[k]={count:counts[k],pct:Math.round(counts[k]/total*100)}; });
+  Object.keys(counts).forEach(k => { if (!result[k]) result[k]={count:counts[k],pct:Math.round(counts[k]/total*100)}; });
   return result;
 }
-
 function avgScore(rows, col, map) {
   if (!col) return null;
-  let sum = 0, count = 0;
-  rows.forEach(r => {
-    const v = (r[col] || '').toString().trim();
-    if (v && map[v] !== undefined) { sum += map[v]; count++; }
-  });
-  return count > 0 ? (sum / count) : null;
+  let sum=0, count=0;
+  rows.forEach(r => { const v=(r[col]||'').toString().trim(); if(v && map[v]!==undefined){sum+=map[v];count++;} });
+  return count > 0 ? sum/count : null;
 }
-
 function buildStats() {
   lectureStats = [];
-
-  // gather per-sheet stats
   Object.keys(allData).forEach(name => {
     const rows = allData[name];
-
-    const c1 = colKey(rows, ['Оцінка лекції', 'оцін']);
-    const c2 = colKey(rows, ['корисною', 'корисна', 'Наскільки']);
-    const c3 = colKey(rows, ['комфортно', 'лектором', 'взаємодія']);
-
-    const d1 = distrib(rows, c1, LECTURE_SCORE_MAP);
-    const d2 = distrib(rows, c2, USEFUL_SCORE_MAP);
-    const d3 = distrib(rows, c3, COMFORT_SCORE_MAP);
-
-    const s1 = avgScore(rows, c1, LECTURE_SCORE_MAP);
-    const s2 = avgScore(rows, c2, USEFUL_SCORE_MAP);
-    const s3 = avgScore(rows, c3, COMFORT_SCORE_MAP);
-
-    const compositeScore = [s1, s2, s3].filter(x => x !== null);
-    const score = compositeScore.length
-      ? compositeScore.reduce((a,b)=>a+b,0) / compositeScore.length
-      : 0;
-
-    lectureStats.push({
-      name,
-      rows,
-      score: +score.toFixed(2),
-      responses: rows.length,
-      c1, c2, c3,
-      d1, d2, d3,
-      s1, s2, s3
-    });
+    const c1=colKey(rows,['Оцінка лекції','оцін']),c2=colKey(rows,['корисною','корисна','Наскільки']),c3=colKey(rows,['комфортно','лектором','взаємодія']);
+    const d1=distrib(rows,c1,LECTURE_SCORE_MAP),d2=distrib(rows,c2,USEFUL_SCORE_MAP),d3=distrib(rows,c3,COMFORT_SCORE_MAP);
+    const s1=avgScore(rows,c1,LECTURE_SCORE_MAP),s2=avgScore(rows,c2,USEFUL_SCORE_MAP),s3=avgScore(rows,c3,COMFORT_SCORE_MAP);
+    const sc=[s1,s2,s3].filter(x=>x!==null);
+    const score = sc.length ? +(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2) : 0;
+    lectureStats.push({name,rows,score,responses:rows.length,c1,c2,c3,d1,d2,d3,s1,s2,s3});
   });
-
-  // sort by score descending
-  lectureStats.sort((a, b) => b.score - a.score);
-
-  // program averages
-  const allScores1 = lectureStats.map(l=>l.s1).filter(x=>x!==null);
-  const allScores2 = lectureStats.map(l=>l.s2).filter(x=>x!==null);
-  const allScores3 = lectureStats.map(l=>l.s3).filter(x=>x!==null);
-
-  programAvg = {
-    s1: allScores1.length ? allScores1.reduce((a,b)=>a+b,0)/allScores1.length : null,
-    s2: allScores2.length ? allScores2.reduce((a,b)=>a+b,0)/allScores2.length : null,
-    s3: allScores3.length ? allScores3.reduce((a,b)=>a+b,0)/allScores3.length : null,
-    total: lectureStats.length
+  lectureStats.sort((a,b)=>b.score-a.score);
+  const a1=lectureStats.map(l=>l.s1).filter(x=>x!==null);
+  const a2=lectureStats.map(l=>l.s2).filter(x=>x!==null);
+  const a3=lectureStats.map(l=>l.s3).filter(x=>x!==null);
+  programAvg={
+    s1:a1.length?a1.reduce((a,b)=>a+b)/a1.length:null,
+    s2:a2.length?a2.reduce((a,b)=>a+b)/a2.length:null,
+    s3:a3.length?a3.reduce((a,b)=>a+b)/a3.length:null
   };
-  const compArr = [programAvg.s1, programAvg.s2, programAvg.s3].filter(x=>x!==null);
-  programAvg.composite = compArr.length ? compArr.reduce((a,b)=>a+b,0)/compArr.length : null;
+  const ca=[programAvg.s1,programAvg.s2,programAvg.s3].filter(x=>x!==null);
+  programAvg.composite=ca.length?ca.reduce((a,b)=>a+b)/ca.length:null;
 }
 
-// ─────────────────────────────────────────────
-// SHOW APP
-// ─────────────────────────────────────────────
-function showApp(filename) {
-  document.getElementById('upload-screen').style.display = 'none';
-  document.getElementById('app-header').style.display = 'flex';
-  document.getElementById('app').style.display = 'flex';
-  document.getElementById('header-filename').textContent = filename;
+// ── SCREENS ──────────────────────────────────────
+function showHome() {
+  document.getElementById('home-screen').style.display='flex';
+  document.getElementById('app').style.display='none';
+  document.getElementById('header-title').textContent='Lecture Feedback Analyzer';
+  document.getElementById('header-actions').innerHTML='';
+  document.getElementById('file-input').value='';
+  loadHistory();
+}
+
+function showApp() {
+  document.getElementById('home-screen').style.display='none';
+  document.getElementById('app').style.display='flex';
+  document.getElementById('header-title').textContent=currentFilename;
+  const el=document.getElementById('header-actions');
+  if (isReadonly) {
+    el.innerHTML=`<span class="readonly-badge">📁 З архіву</span><button class="btn btn-ghost" onclick="showHome()">← Головна</button>`;
+  } else {
+    el.innerHTML=`<button id="save-btn" class="btn btn-ghost btn-sm" onclick="saveCurrentReport()">💾 Зберегти звіт</button><button class="btn btn-ghost" onclick="showHome()">← Головна</button>`;
+  }
   renderSidebar();
 }
 
-function resetApp() {
-  allData = {};
-  lectureStats = [];
-  insightCache = {};
-  activeSheet = null;
-  document.getElementById('upload-screen').style.display = 'flex';
-  document.getElementById('app-header').style.display = 'none';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('file-input').value = '';
-}
-
-// ─────────────────────────────────────────────
-// SIDEBAR RENDER
-// ─────────────────────────────────────────────
-function scoreToBarColor(score) {
-  // score 0–5
-  if (score >= 3.5) return '#2ECC71';
-  if (score >= 2)   return '#F39C12';
-  return '#E74C3C';
-}
-
-function fmtScore(s) {
-  return s !== null ? s.toFixed(1) : '—';
-}
+// ── SIDEBAR ──────────────────────────────────────
+function fmtScore(s) { return s!=null?(+s).toFixed(1):'—'; }
+function scoreToColor(s) { return s>=3.5?'#2ECC71':s>=2?'#F39C12':'#E74C3C'; }
 
 function renderSidebar() {
-  // program avg chips
-  const avgEl = document.getElementById('program-avg');
-  avgEl.innerHTML = `
+  document.getElementById('program-avg').innerHTML=`
     <div class="avg-chip">🎯 <strong>${fmtScore(programAvg.composite)}/5</strong> загалом</div>
     <div class="avg-chip">📚 <strong>${fmtScore(programAvg.s1)}</strong> оцінка</div>
     <div class="avg-chip">💡 <strong>${fmtScore(programAvg.s2)}</strong> користь</div>
-    <div class="avg-chip">👤 <strong>${fmtScore(programAvg.s3)}</strong> комфорт</div>
-  `;
-
-  const list = document.getElementById('sidebar-list');
-  list.innerHTML = '';
-
-  const maxScore = lectureStats[0]?.score || 5;
-
-  lectureStats.forEach((lec, idx) => {
-    const barW = maxScore > 0 ? Math.round((lec.score / maxScore) * 100) : 0;
-    const div = document.createElement('div');
-    div.className = 'lecture-item';
-    div.dataset.name = lec.name;
-    div.innerHTML = `
-      <span class="lecture-rank">#${idx+1}</span>
+    <div class="avg-chip">👤 <strong>${fmtScore(programAvg.s3)}</strong> комфорт</div>`;
+  const list=document.getElementById('sidebar-list');
+  list.innerHTML='';
+  const maxScore=lectureStats[0]?.score||5;
+  lectureStats.forEach((lec,idx)=>{
+    const barW=maxScore>0?Math.round(lec.score/maxScore*100):0;
+    const div=document.createElement('div');
+    div.className='lecture-item'; div.dataset.name=lec.name;
+    div.innerHTML=`<span class="lecture-rank">#${idx+1}</span>
       <div class="lecture-bar-wrap">
         <div class="lecture-name" title="${lec.name}">${lec.name}</div>
         <div class="lecture-bar-row">
-          <div class="lecture-bar-bg">
-            <div class="lecture-bar-fill" style="width:${barW}%; background:${scoreToBarColor(lec.score)}"></div>
-          </div>
-          <span class="lecture-score">${lec.score.toFixed(1)}</span>
+          <div class="lecture-bar-bg"><div class="lecture-bar-fill" style="width:${barW}%;background:${scoreToColor(lec.score)}"></div></div>
+          <span class="lecture-score">${(+lec.score).toFixed(1)}</span>
           <span class="lecture-count">${lec.responses}↩</span>
         </div>
-      </div>
-    `;
-    div.addEventListener('click', () => selectLecture(lec.name));
+      </div>`;
+    div.addEventListener('click',()=>selectLecture(lec.name));
     list.appendChild(div);
   });
 }
 
-// ─────────────────────────────────────────────
-// SELECT LECTURE → RENDER DETAIL
-// ─────────────────────────────────────────────
+// ── LECTURE DETAIL ───────────────────────────────
 function selectLecture(name) {
-  activeSheet = name;
-
-  // Update sidebar active
-  document.querySelectorAll('.lecture-item').forEach(el => {
-    el.classList.toggle('active', el.dataset.name === name);
-  });
-
-  const lec = lectureStats.find(l => l.name === name);
+  activeSheet=name;
+  document.querySelectorAll('.lecture-item').forEach(el=>el.classList.toggle('active',el.dataset.name===name));
+  const lec=lectureStats.find(l=>l.name===name);
   if (!lec) return;
+  const rank=lectureStats.findIndex(l=>l.name===name)+1;
+  const delta=programAvg.composite!=null?(lec.score-programAvg.composite):null;
+  const deltaHtml=delta!=null?`<span class="vs-avg-delta ${delta>0.1?'delta-pos':delta<-0.1?'delta-neg':'delta-neu'}">${delta>=0?'+':''}${delta.toFixed(2)} vs avg</span>`:'';
 
-  const rank = lectureStats.findIndex(l => l.name === name) + 1;
-  const delta = programAvg.composite !== null
-    ? (lec.score - programAvg.composite)
-    : null;
-  const deltaHtml = delta !== null
-    ? `<span class="vs-avg-delta ${delta > 0.1 ? 'delta-pos' : delta < -0.1 ? 'delta-neg' : 'delta-neu'}">${delta >= 0 ? '+' : ''}${delta.toFixed(2)} vs avg</span>`
-    : '';
-
-  const main = document.getElementById('main-content');
-  main.innerHTML = `
+  document.getElementById('main-content').innerHTML=`
     <div class="lecture-header">
       <div class="lecture-header-top">
         <h2>${name}</h2>
         <span class="response-badge">${lec.responses} відповідей</span>
       </div>
       <div class="vs-avg-row">
-        <span class="vs-avg-score">${lec.score.toFixed(2)}/5</span>
+        <span class="vs-avg-score">${(+lec.score).toFixed(2)}/5</span>
         ${deltaHtml}
         <span style="color:var(--text-dim)">·</span>
         <span style="color:var(--text-muted);font-size:12px">#${rank} з ${lectureStats.length} лекцій</span>
       </div>
     </div>
-
     <div class="section-label">Оцінки</div>
     <div class="ratings-grid">
-      ${buildRatingCard('Оцінка лекції', lec.d1, COL1_COLORS)}
-      ${buildRatingCard('Корисність інформації', lec.d2, COL2_COLORS)}
-      ${buildRatingCard('Комфорт з лектором', lec.d3, COL3_COLORS)}
+      ${buildRatingCard('Оцінка лекції',lec.d1)}
+      ${buildRatingCard('Корисність інформації',lec.d2)}
+      ${buildRatingCard('Комфорт з лектором',lec.d3)}
     </div>
-
     <div class="section-label">AI-інсайти</div>
-    <div id="insights-block">
-      ${apiKey ? renderInsightsLoading() : renderNoApiNotice()}
-    </div>
-  `;
+    <div id="insights-block"></div>`;
 
-  if (apiKey) {
-    if (insightCache[name]) {
-      document.getElementById('insights-block').innerHTML = insightCache[name];
-    } else {
-      loadInsights(lec);
-    }
+  if (insightCache[name]) {
+    document.getElementById('insights-block').innerHTML=insightCache[name];
+  } else if (apiKey && !isReadonly) {
+    document.getElementById('insights-block').innerHTML=`<div class="insights-card"><div class="insights-loading"><div class="spinner"></div> Аналізую відгуки…</div></div>`;
+    loadInsights(lec);
+  } else {
+    document.getElementById('insights-block').innerHTML=`<div class="insights-card"><div class="no-api-notice">ℹ️ ${isReadonly?'AI-інсайти не були збережені для цієї лекції.':'Додай Anthropic API key для отримання AI-інсайтів.'}</div></div>`;
   }
 }
 
-function buildRatingCard(title, distData, colors) {
-  const entries = Object.entries(distData);
-  if (!entries.length) {
-    return `<div class="rating-card"><div class="rating-card-title">${title}</div><p class="insights-empty">Немає даних</p></div>`;
-  }
-  const rows = entries.map(([label, {pct}], i) => {
-    const color = colors[Math.min(i, colors.length-1)];
-    return `<div class="rating-row">
+function buildRatingCard(title, distData) {
+  const entries=Object.entries(distData||{});
+  if (!entries.length) return `<div class="rating-card"><div class="rating-card-title">${title}</div><p style="font-size:13px;color:var(--text-dim);font-style:italic">Немає даних</p></div>`;
+  const rows=entries.map(([label,{pct}],i)=>`
+    <div class="rating-row">
       <span class="rating-label" title="${label}">${label}</span>
-      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:${pct}%;background:${COL_COLORS[Math.min(i,4)]}"></div></div>
       <span class="rating-pct">${pct}%</span>
-    </div>`;
-  }).join('');
+    </div>`).join('');
   return `<div class="rating-card"><div class="rating-card-title">${title}</div>${rows}</div>`;
 }
 
-function renderInsightsLoading() {
-  return `<div class="insights-card"><div class="insights-loading"><div class="spinner"></div> Аналізую відгуки…</div></div>`;
-}
-
-function renderNoApiNotice() {
-  return `<div class="insights-card"><div class="no-api-notice">ℹ️ Додай Anthropic API key перед завантаженням файлу для отримання AI-інсайтів. <a href="#" onclick="resetApp();return false">Переключитись</a></div></div>`;
-}
-
-// ─────────────────────────────────────────────
-// AI INSIGHTS
-// ─────────────────────────────────────────────
+// ── AI INSIGHTS ──────────────────────────────────
 async function loadInsights(lec) {
-  const openCols = [
-    colKey(lec.rows, ['корисного дізна', 'навички', 'Що корисного']),
-    colKey(lec.rows, ['покращити лектору', 'варто покращити']),
-    colKey(lec.rows, ['питання не було', 'розкрито']),
-    colKey(lec.rows, ['Коментар', 'коментар'])
+  const openCols=[
+    colKey(lec.rows,['корисного дізна','навички','Що корисного']),
+    colKey(lec.rows,['покращити лектору','варто покращити']),
+    colKey(lec.rows,['питання не було','розкрито']),
+    colKey(lec.rows,['Коментар','коментар'])
   ];
-
-  const colNames = ['Що корисного дізнались', 'Що покращити лектору', 'Нерозкриті питання', 'Коментарі'];
-
-  let textData = '';
-  openCols.forEach((col, i) => {
+  const colNames=['Що корисного дізнались','Що покращити лектору','Нерозкриті питання','Коментарі'];
+  let textData='';
+  openCols.forEach((col,i)=>{
     if (!col) return;
-    const values = lec.rows.map(r => (r[col] || '').toString().trim()).filter(Boolean);
-    if (values.length) {
-      textData += `\n### ${colNames[i]}:\n${values.map(v=>`- ${v}`).join('\n')}\n`;
-    }
+    const values=lec.rows.map(r=>(r[col]||'').toString().trim()).filter(Boolean);
+    if (values.length) textData+=`\n### ${colNames[i]}:\n${values.map(v=>`- ${v}`).join('\n')}\n`;
   });
 
   if (!textData.trim()) {
-    const html = `<div class="insights-card"><div class="no-api-notice">ℹ️ Текстових відгуків для цієї лекції не знайдено.</div></div>`;
-    document.getElementById('insights-block').innerHTML = html;
-    insightCache[lec.name] = html;
-    return;
+    const html=`<div class="insights-card"><div class="no-api-notice">ℹ️ Текстових відгуків не знайдено.</div></div>`;
+    document.getElementById('insights-block').innerHTML=html;
+    insightCache[lec.name]=html; return;
   }
 
-  const prompt = `Ти аналізуєш відгуки студентів на освітню лекцію. 
-Лекція: "${lec.name}"
-Кількість відповідей: ${lec.responses}
+  const prompt=`Ти аналізуєш відгуки студентів на освітню лекцію.
+Лекція: "${lec.name}", відповідей: ${lec.responses}
 
-Нижче — текстові відгуки студентів по розділах:
 ${textData}
 
-Твоє завдання: зроби стислий аналіз у форматі JSON. Відповідай ТІЛЬКИ валідним JSON без markdown та пояснень.
+Поверни ТІЛЬКИ валідний JSON:
+{"useful":["інсайт"],"improve":["рекомендація"],"uncovered":["тема"],"vibe":"загальний тон"}
 
-Поверни об'єкт такого вигляду:
-{
-  "useful": ["інсайт 1", "інсайт 2", "інсайт 3"],
-  "improve": ["рекомендація 1", "рекомендація 2"],
-  "uncovered": ["тема 1", "тема 2"],
-  "vibe": "одне речення про загальний тон відгуків"
-}
-
-Правила:
-- Кожен пункт — конкретний, без води, на основі реальних відповідей
-- Мова відповіді: українська
-- Якщо розділ порожній або не інформативний — повертай порожній масив []
-- Не цитуй дослівно, узагальнюй патерни
-- Максимум 5 пунктів у кожному масиві`;
+Правила: конкретно, українською, max 5 пунктів у масиві, порожній = [].`;
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})
     });
-
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error?.message || 'API error');
-
-    const raw = data.content.find(b => b.type === 'text')?.text || '';
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
-
-    const html = buildInsightsHtml(parsed);
-    document.getElementById('insights-block').innerHTML = html;
-    insightCache[lec.name] = html;
+    const data=await resp.json();
+    if (!resp.ok) throw new Error(data.error?.message||'API error');
+    const parsed=JSON.parse(data.content.find(b=>b.type==='text')?.text.replace(/```json|```/g,'').trim());
+    const html=buildInsightsHtml(parsed);
+    document.getElementById('insights-block').innerHTML=html;
+    insightCache[lec.name]=html;
   } catch(err) {
-    const html = `<div class="insights-card"><div class="no-api-notice">⚠️ Помилка: ${err.message}</div></div>`;
-    document.getElementById('insights-block').innerHTML = html;
+    const html=`<div class="insights-card"><div class="no-api-notice">⚠️ ${err.message}</div></div>`;
+    document.getElementById('insights-block').innerHTML=html;
   }
 }
 
 function buildInsightsHtml(d) {
-  function section(title, icon, items) {
-    if (!items || !items.length) return '';
-    return `<div class="insights-section">
-      <div class="insights-section-title"><span class="icon">${icon}</span>${title}</div>
-      <ul class="insights-list">${items.map(i=>`<li>${i}</li>`).join('')}</ul>
-    </div>`;
-  }
-
-  const vibe = d.vibe ? `<div class="insights-section">
-    <div class="insights-section-title"><span class="icon">🌡</span>Загальний тон</div>
-    <p style="font-size:13px;color:var(--text);line-height:1.6">${d.vibe}</p>
-  </div>` : '';
-
-  return `<div class="insights-card">
-    ${section('Що цінували студенти', '✅', d.useful)}
-    ${section('Що варто покращити лектору', '🔧', d.improve)}
-    ${section('Нерозкриті питання', '❓', d.uncovered)}
-    ${vibe}
-  </div>`;
+  const sec=(title,icon,items)=>items?.length?`<div class="insights-section"><div class="insights-section-title"><span>${icon}</span>${title}</div><ul class="insights-list">${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`:'';
+  const vibe=d.vibe?`<div class="insights-section"><div class="insights-section-title"><span>🌡</span>Загальний тон</div><p style="font-size:13px;color:var(--text);line-height:1.6">${d.vibe}</p></div>`:'';
+  return `<div class="insights-card">${sec('Що цінували студенти','✅',d.useful)}${sec('Що покращити лектору','🔧',d.improve)}${sec('Нерозкриті питання','❓',d.uncovered)}${vibe}</div>`;
 }
+
+// ── TOAST ────────────────────────────────────────
+let toastTimer=null;
+function showToast(msg,type='success') {
+  const el=document.getElementById('toast');
+  el.className=`toast ${type}`;
+  document.getElementById('toast-icon').textContent=type==='success'?'✓':'✕';
+  document.getElementById('toast-msg').textContent=msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),3500);
+}
+
+// ── INIT ─────────────────────────────────────────
+showHome();
 </script>
 </body>
 </html>
