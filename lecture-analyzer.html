@@ -9,160 +9,148 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
   :root {
-    --bg: #0F0F1A; --surface: #1A1A2E; --surface2: #22223A; --surface3: #2A2A45;
-    --accent: #E85D26; --accent2: #FF7A45; --accent-dim: rgba(232,93,38,0.15);
-    --text: #F0F0F5; --text-muted: #8888AA; --text-dim: #555575; --border: #2E2E4E;
-    --green: #2ECC71; --yellow: #F39C12; --red: #E74C3C;
-    --radius: 10px; --radius-sm: 6px;
+    --bg:#0F0F1A; --surface:#1A1A2E; --surface2:#22223A; --surface3:#2A2A45;
+    --accent:#E85D26; --accent2:#FF7A45; --accent-dim:rgba(232,93,38,0.15);
+    --text:#F0F0F5; --text-muted:#8888AA; --text-dim:#555575; --border:#2E2E4E;
+    --green:#2ECC71; --yellow:#F39C12; --red:#E74C3C;
+    --radius:10px; --radius-sm:6px;
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;}
 
-  /* HEADER */
-  .header { background:var(--surface); border-bottom:1px solid var(--border); padding:0 24px; height:56px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:100; }
-  .header-logo { font-size:13px; font-weight:600; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; }
-  .header-title { font-size:13px; color:var(--text-muted); font-weight:400; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:400px; }
-  .header-sep { color:var(--text-dim); }
-  .header-actions { margin-left:auto; display:flex; gap:8px; align-items:center; flex-shrink:0; }
+  .header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;}
+  .header-logo{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;}
+  .header-title{font-size:13px;color:var(--text-muted);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:400px;}
+  .header-sep{color:var(--text-dim);}
+  .header-actions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-shrink:0;}
 
-  /* BUTTONS */
-  .btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:var(--radius-sm); font-size:13px; font-weight:500; cursor:pointer; border:none; transition:all 0.15s; font-family:'Inter',sans-serif; }
-  .btn-primary { background:var(--accent); color:white; }
-  .btn-primary:hover { background:var(--accent2); }
-  .btn-ghost { background:var(--surface3); color:var(--text-muted); border:1px solid var(--border); }
-  .btn-ghost:hover { color:var(--text); border-color:var(--text-dim); }
-  .btn-sm { padding:5px 10px; font-size:12px; }
-  .btn:disabled { opacity:0.4; cursor:not-allowed; }
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.15s;font-family:'Inter',sans-serif;}
+  .btn-primary{background:var(--accent);color:white;}
+  .btn-primary:hover{background:var(--accent2);}
+  .btn-ghost{background:var(--surface3);color:var(--text-muted);border:1px solid var(--border);}
+  .btn-ghost:hover{color:var(--text);border-color:var(--text-dim);}
+  .btn-sm{padding:5px 10px;font-size:12px;}
+  .btn:disabled{opacity:0.4;cursor:not-allowed;}
 
-  /* HOME */
-  #home-screen { flex:1; display:flex; flex-direction:column; align-items:center; padding:48px 24px; gap:24px; }
-  .home-top { display:flex; gap:24px; width:100%; max-width:960px; align-items:flex-start; }
+  #home-screen{flex:1;display:flex;flex-direction:column;align-items:center;padding:48px 24px;gap:24px;}
+  .home-top{display:flex;gap:24px;width:100%;max-width:960px;align-items:flex-start;}
 
-  .upload-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:36px 32px; width:380px; min-width:340px; text-align:center; }
-  .upload-icon { width:56px; height:56px; background:var(--accent-dim); border-radius:14px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:24px; }
-  .upload-card h2 { font-size:18px; font-weight:600; margin-bottom:6px; letter-spacing:-0.02em; }
-  .upload-card > p { font-size:13px; color:var(--text-muted); line-height:1.5; margin-bottom:24px; }
-  .upload-drop-zone { border:2px dashed var(--border); border-radius:var(--radius); padding:24px; cursor:pointer; transition:all 0.2s; margin-bottom:16px; }
-  .upload-drop-zone:hover,.upload-drop-zone.drag-over { border-color:var(--accent); background:var(--accent-dim); }
-  .upload-drop-zone p { margin-bottom:10px; font-size:13px; color:var(--text-muted); }
-  .upload-hint { font-size:11px; color:var(--text-dim); margin-top:8px; }
-  #file-input { display:none; }
+  .upload-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px 32px;width:380px;min-width:340px;text-align:center;}
+  .upload-icon{width:56px;height:56px;background:var(--accent-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;}
+  .upload-card h2{font-size:18px;font-weight:600;margin-bottom:6px;letter-spacing:-0.02em;}
+  .upload-card>p{font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:24px;}
+  .upload-drop-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:24px;cursor:pointer;transition:all 0.2s;margin-bottom:16px;}
+  .upload-drop-zone:hover,.upload-drop-zone.drag-over{border-color:var(--accent);background:var(--accent-dim);}
+  .upload-drop-zone p{margin-bottom:10px;font-size:13px;color:var(--text-muted);}
+  .upload-hint{font-size:11px;color:var(--text-dim);margin-top:8px;}
+  #file-input{display:none;}
 
-  .api-input-wrap { margin-top:20px; text-align:left; }
-  .api-input-wrap label { display:block; font-size:12px; color:var(--text-muted); margin-bottom:6px; font-weight:500; }
-  .api-input-wrap input { width:100%; padding:9px 12px; background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-size:13px; font-family:'JetBrains Mono',monospace; outline:none; transition:border-color 0.2s; }
-  .api-input-wrap input:focus { border-color:var(--accent); }
-  .api-input-wrap .hint { font-size:11px; color:var(--text-dim); margin-top:4px; }
+  .api-input-wrap{margin-top:20px;text-align:left;}
+  .api-input-wrap label{display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:500;}
+  .api-input-wrap input{width:100%;padding:9px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;transition:border-color 0.2s;}
+  .api-input-wrap input:focus{border-color:var(--accent);}
+  .api-input-wrap .hint{font-size:11px;color:var(--text-dim);margin-top:4px;}
 
-  /* HISTORY */
-  .history-panel { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; min-height:320px; }
-  .history-panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-  .history-panel-header h2 { font-size:13px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; }
-  .history-loading { display:flex; align-items:center; gap:10px; color:var(--text-dim); font-size:13px; padding:20px 0; }
-  .history-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; color:var(--text-dim); font-size:13px; gap:8px; }
-  .history-empty .icon { font-size:28px; }
+  .history-panel{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;min-height:320px;}
+  .history-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+  .history-panel-header h2{font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;}
+  .history-loading{display:flex;align-items:center;gap:10px;color:var(--text-dim);font-size:13px;padding:20px 0;}
+  .history-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:200px;color:var(--text-dim);font-size:13px;gap:8px;}
+  .history-empty .icon{font-size:28px;}
 
-  .history-item { display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:8px; cursor:pointer; transition:all 0.15s; background:var(--surface2); }
-  .history-item:hover { border-color:var(--accent); background:var(--accent-dim); }
-  .history-item-icon { font-size:20px; flex-shrink:0; }
-  .history-item-info { flex:1; min-width:0; }
-  .history-item-name { font-size:14px; font-weight:500; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:3px; }
-  .history-item-meta { font-size:11px; color:var(--text-dim); display:flex; gap:10px; }
-  .history-item-score { font-size:15px; font-weight:700; font-family:'JetBrains Mono',monospace; color:var(--green); flex-shrink:0; }
-  .history-item-delete { background:none; border:none; cursor:pointer; color:var(--text-dim); font-size:14px; padding:4px; border-radius:4px; transition:all 0.15s; flex-shrink:0; }
-  .history-item-delete:hover { color:var(--red); background:rgba(231,76,60,0.1); }
-  .history-item-who { font-size:10px; color:var(--text-dim); background:var(--surface3); border-radius:3px; padding:1px 5px; }
+  .history-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:8px;cursor:pointer;transition:all 0.15s;background:var(--surface2);}
+  .history-item:hover{border-color:var(--accent);background:var(--accent-dim);}
+  .history-item-icon{font-size:20px;flex-shrink:0;}
+  .history-item-info{flex:1;min-width:0;}
+  .history-item-name{font-size:14px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
+  .history-item-meta{font-size:11px;color:var(--text-dim);display:flex;gap:10px;flex-wrap:wrap;}
+  .history-item-score{font-size:15px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green);flex-shrink:0;}
+  .history-item-delete{background:none;border:none;cursor:pointer;color:var(--text-dim);font-size:14px;padding:4px;border-radius:4px;transition:all 0.15s;flex-shrink:0;}
+  .history-item-delete:hover{color:var(--red);background:rgba(231,76,60,0.1);}
 
-  /* APP */
-  #app { display:none; flex:1; overflow:hidden; height:calc(100vh - 56px); }
-  .app-inner { display:flex; height:100%; }
+  #app{display:none;flex:1;overflow:hidden;height:calc(100vh - 56px);}
+  .app-inner{display:flex;height:100%;}
 
-  /* SIDEBAR */
-  .sidebar { width:280px; min-width:280px; background:var(--surface); border-right:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; }
-  .sidebar-header { padding:16px; border-bottom:1px solid var(--border); }
-  .sidebar-header h2 { font-size:11px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; }
-  .program-avg { display:flex; gap:8px; flex-wrap:wrap; }
-  .avg-chip { background:var(--surface2); border:1px solid var(--border); border-radius:20px; padding:4px 10px; font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
-  .avg-chip strong { color:var(--text); font-size:12px; }
-  .sidebar-list { flex:1; overflow-y:auto; padding:8px; }
-  .sidebar-list::-webkit-scrollbar { width:4px; }
-  .sidebar-list::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+  .sidebar{width:280px;min-width:280px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+  .sidebar-header{padding:16px;border-bottom:1px solid var(--border);}
+  .sidebar-header h2{font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;}
+  .program-avg{display:flex;gap:8px;flex-wrap:wrap;}
+  .avg-chip{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:4px;}
+  .avg-chip strong{color:var(--text);font-size:12px;}
+  .sidebar-list{flex:1;overflow-y:auto;padding:8px;}
+  .sidebar-list::-webkit-scrollbar{width:4px;}
+  .sidebar-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
-  .lecture-item { display:flex; align-items:center; gap:10px; padding:10px; border-radius:var(--radius-sm); cursor:pointer; transition:all 0.15s; margin-bottom:2px; border:1px solid transparent; }
-  .lecture-item:hover { background:var(--surface2); }
-  .lecture-item.active { background:var(--accent-dim); border-color:rgba(232,93,38,0.3); }
-  .lecture-rank { font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--text-dim); width:18px; text-align:right; flex-shrink:0; }
-  .lecture-bar-wrap { flex:1; min-width:0; }
-  .lecture-name { font-size:12px; color:var(--text); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:4px; }
-  .lecture-bar-row { display:flex; align-items:center; gap:6px; }
-  .lecture-bar-bg { flex:1; height:4px; background:var(--surface3); border-radius:2px; overflow:hidden; }
-  .lecture-bar-fill { height:100%; border-radius:2px; transition:width 0.4s ease; }
-  .lecture-score { font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--text-muted); flex-shrink:0; width:28px; text-align:right; }
-  .lecture-count { font-size:10px; color:var(--text-dim); flex-shrink:0; }
+  .lecture-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);cursor:pointer;transition:all 0.15s;margin-bottom:2px;border:1px solid transparent;}
+  .lecture-item:hover{background:var(--surface2);}
+  .lecture-item.active{background:var(--accent-dim);border-color:rgba(232,93,38,0.3);}
+  .lecture-rank{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text-dim);width:18px;text-align:right;flex-shrink:0;}
+  .lecture-bar-wrap{flex:1;min-width:0;}
+  .lecture-name{font-size:12px;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px;}
+  .lecture-bar-row{display:flex;align-items:center;gap:6px;}
+  .lecture-bar-bg{flex:1;height:4px;background:var(--surface3);border-radius:2px;overflow:hidden;}
+  .lecture-bar-fill{height:100%;border-radius:2px;transition:width 0.4s ease;}
+  .lecture-score{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-muted);flex-shrink:0;width:28px;text-align:right;}
+  .lecture-count{font-size:10px;color:var(--text-dim);flex-shrink:0;}
 
-  /* MAIN */
-  .main { flex:1; overflow-y:auto; padding:28px 32px; background:var(--bg); }
-  .main::-webkit-scrollbar { width:6px; }
-  .main::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
-  .empty-state { height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--text-dim); gap:12px; }
-  .empty-state .icon { font-size:40px; }
-  .empty-state p { font-size:14px; }
+  .main{flex:1;overflow-y:auto;padding:28px 32px;background:var(--bg);}
+  .main::-webkit-scrollbar{width:6px;}
+  .main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+  .empty-state{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-dim);gap:12px;}
+  .empty-state .icon{font-size:40px;}
 
-  .lecture-header { margin-bottom:24px; }
-  .lecture-header-top { display:flex; align-items:flex-start; gap:16px; margin-bottom:12px; }
-  .lecture-header h2 { font-size:22px; font-weight:700; letter-spacing:-0.02em; flex:1; }
-  .response-badge { background:var(--surface2); border:1px solid var(--border); border-radius:20px; padding:4px 12px; font-size:12px; color:var(--text-muted); flex-shrink:0; margin-top:4px; }
+  .lecture-header{margin-bottom:24px;}
+  .lecture-header-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:12px;}
+  .lecture-header h2{font-size:22px;font-weight:700;letter-spacing:-0.02em;flex:1;}
+  .response-badge{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--text-muted);flex-shrink:0;margin-top:4px;}
 
-  .vs-avg-row { display:flex; align-items:center; gap:10px; padding:10px 14px; background:var(--surface); border-radius:var(--radius-sm); border:1px solid var(--border); font-size:12px; color:var(--text-muted); }
-  .vs-avg-score { font-size:20px; font-weight:700; font-family:'JetBrains Mono',monospace; color:var(--text); }
-  .vs-avg-delta { font-size:12px; font-family:'JetBrains Mono',monospace; font-weight:600; padding:2px 6px; border-radius:4px; }
-  .delta-pos { color:var(--green); background:rgba(46,204,113,0.12); }
-  .delta-neg { color:var(--red); background:rgba(231,76,60,0.12); }
-  .delta-neu { color:var(--text-muted); background:var(--surface3); }
+  .vs-avg-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border);font-size:12px;color:var(--text-muted);}
+  .vs-avg-score{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--text);}
+  .vs-avg-delta{font-size:12px;font-family:'JetBrains Mono',monospace;font-weight:600;padding:2px 6px;border-radius:4px;}
+  .delta-pos{color:var(--green);background:rgba(46,204,113,0.12);}
+  .delta-neg{color:var(--red);background:rgba(231,76,60,0.12);}
+  .delta-neu{color:var(--text-muted);background:var(--surface3);}
 
-  .section-label { font-size:11px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin:24px 0 12px; }
-  .ratings-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px; }
-  .rating-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px; }
-  .rating-card-title { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; }
-  .rating-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-  .rating-label { font-size:12px; color:var(--text-muted); flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .rating-pct { font-size:12px; font-family:'JetBrains Mono',monospace; font-weight:500; color:var(--text); width:36px; text-align:right; flex-shrink:0; }
-  .rating-bar-bg { width:80px; height:6px; background:var(--surface3); border-radius:3px; overflow:hidden; flex-shrink:0; }
-  .rating-bar-fill { height:100%; border-radius:3px; transition:width 0.5s ease; }
+  .section-label{font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin:24px 0 12px;}
+  .ratings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+  .rating-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+  .rating-card-title{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;}
+  .rating-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .rating-label{font-size:12px;color:var(--text-muted);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .rating-pct{font-size:12px;font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--text);width:36px;text-align:right;flex-shrink:0;}
+  .rating-bar-bg{width:80px;height:6px;background:var(--surface3);border-radius:3px;overflow:hidden;flex-shrink:0;}
+  .rating-bar-fill{height:100%;border-radius:3px;transition:width 0.5s ease;}
 
-  .insights-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:12px; }
-  .insights-loading { padding:20px; display:flex; align-items:center; gap:10px; color:var(--text-muted); font-size:13px; }
-  .spinner { width:16px; height:16px; border:2px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; flex-shrink:0; }
-  @keyframes spin { to { transform:rotate(360deg); } }
-  .insights-section { padding:16px 20px; border-bottom:1px solid var(--border); }
-  .insights-section:last-child { border-bottom:none; }
-  .insights-section-title { font-size:11px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
-  .insights-list { list-style:none; }
-  .insights-list li { font-size:13px; color:var(--text); line-height:1.6; padding:4px 0 4px 14px; position:relative; border-bottom:1px solid var(--border); }
-  .insights-list li:last-child { border-bottom:none; }
-  .insights-list li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:11px; top:5px; }
-  .no-api-notice { padding:14px 20px; font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:8px; }
-  .no-api-notice a { color:var(--accent); text-decoration:none; }
+  .insights-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px;}
+  .insights-loading{padding:20px;display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:13px;}
+  .spinner{width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .insights-section{padding:16px 20px;border-bottom:1px solid var(--border);}
+  .insights-section:last-child{border-bottom:none;}
+  .insights-section-title{font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  .insights-list{list-style:none;}
+  .insights-list li{font-size:13px;color:var(--text);line-height:1.6;padding:4px 0 4px 14px;position:relative;border-bottom:1px solid var(--border);}
+  .insights-list li:last-child{border-bottom:none;}
+  .insights-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:11px;top:5px;}
+  .no-api-notice{padding:14px 20px;font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
 
-  .readonly-badge { background:rgba(52,152,219,0.15); color:#3498DB; border:1px solid rgba(52,152,219,0.3); border-radius:20px; padding:3px 10px; font-size:11px; font-weight:500; }
+  .readonly-badge{background:rgba(52,152,219,0.15);color:#3498DB;border:1px solid rgba(52,152,219,0.3);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:500;}
 
-  /* TOAST */
-  .toast { position:fixed; bottom:24px; right:24px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 18px; font-size:13px; color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,0.4); display:flex; align-items:center; gap:10px; opacity:0; transform:translateY(8px); transition:all 0.25s; pointer-events:none; z-index:200; }
-  .toast.show { opacity:1; transform:translateY(0); }
-  .toast.success .toast-icon { color:var(--green); }
-  .toast.error .toast-icon { color:var(--red); }
+  .toast{position:fixed;bottom:24px;right:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;font-size:13px;color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,0.4);display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(8px);transition:all 0.25s;pointer-events:none;z-index:200;}
+  .toast.show{opacity:1;transform:translateY(0);}
+  .toast.success .toast-icon{color:var(--green);}
+  .toast.error .toast-icon{color:var(--red);}
 </style>
 </head>
 <body>
 
-<header class="header" id="main-header">
+<header class="header">
   <span class="header-logo">GA</span>
   <span class="header-sep">·</span>
   <span class="header-title" id="header-title">Lecture Feedback Analyzer</span>
   <div class="header-actions" id="header-actions"></div>
 </header>
 
-<!-- HOME -->
 <div id="home-screen">
   <div class="home-top">
     <div class="upload-card">
@@ -194,7 +182,6 @@
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <div class="app-inner">
     <nav class="sidebar">
@@ -220,58 +207,82 @@
 
 <script>
 // ── CONFIG ──────────────────────────────────────
-const APPS_SCRIPT_URL = 'https://script.google.com/a/macros/gen.tech/s/AKfycbxat7AGqL2ayWWUyHJZtkUNNkk7fcwxV5zP29YG39KHbnCIUIrJpgUs_6RSGwFqDi2r8A/exec';
+const GITHUB_TOKEN = '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';
+const GIST_FILENAME = 'ga-lecture-reports.json';
+let GIST_ID = null; // discovered or created at runtime
 
 // ── SCORE MAPS ──────────────────────────────────
-const LECTURE_SCORE_MAP = {
-  'Сподобалась повністю':5,'Сподобалась, але є зауваження':3,
-  '50/50':2.5,'Не дуже сподобалась':1.5,'Зовсім не сподобалась':0
-};
-const USEFUL_SCORE_MAP = {
-  'Дуже корисна':5,'Достатньо корисна':4,
-  'Складно сказати':2.5,'Не дуже корисна':1.5,'Зовсім не корисна':0
-};
-const COMFORT_SCORE_MAP = {
-  'Дуже комфортно':5,'Достатньо комфортно':4,
-  'Складно сказати':2.5,'Не дуже комфортно':1.5,'Зовсім некомфортно':0
-};
+const LECTURE_SCORE_MAP = {'Сподобалась повністю':5,'Сподобалась, але є зауваження':3,'50/50':2.5,'Не дуже сподобалась':1.5,'Зовсім не сподобалась':0};
+const USEFUL_SCORE_MAP  = {'Дуже корисна':5,'Достатньо корисна':4,'Складно сказати':2.5,'Не дуже корисна':1.5,'Зовсім не корисна':0};
+const COMFORT_SCORE_MAP = {'Дуже комфортно':5,'Достатньо комфортно':4,'Складно сказати':2.5,'Не дуже комфортно':1.5,'Зовсім некомфортно':0};
 const COL_COLORS = ['#2ECC71','#2ECC71','#F39C12','#E74C3C','#E74C3C'];
 
 // ── STATE ────────────────────────────────────────
-let allData = {}, lectureStats = [], programAvg = {};
-let activeSheet = null, apiKey = '', insightCache = {};
-let currentFilename = '', isReadonly = false;
+let allData={}, lectureStats=[], programAvg={};
+let activeSheet=null, apiKey='', insightCache={};
+let currentFilename='', isReadonly=false;
 
-// ── SHEETS API ──────────────────────────────────
-async function sheetsGet() {
-  const resp = await fetch(APPS_SCRIPT_URL, { credentials: 'include' });
-  if (!resp.ok) throw new Error('HTTP ' + resp.status);
-  const data = await resp.json();
-  if (!data.ok) throw new Error(data.error || 'Apps Script error');
-  return data.reports || [];
-}
+// ── GIST API ────────────────────────────────────
+const GIST_HEADERS = {
+  'Authorization': `token ${GITHUB_TOKEN}`,
+  'Accept': 'application/vnd.github+json',
+  'Content-Type': 'application/json'
+};
 
-async function sheetsPost(body) {
-  const resp = await fetch(APPS_SCRIPT_URL, {
+async function findOrCreateGist() {
+  if (GIST_ID) return GIST_ID;
+
+  // Search existing gists for our file
+  const resp = await fetch('https://api.github.com/gists?per_page=100', { headers: GIST_HEADERS });
+  if (!resp.ok) throw new Error('GitHub API: ' + resp.status);
+  const gists = await resp.json();
+  const found = gists.find(g => g.files && g.files[GIST_FILENAME]);
+  if (found) { GIST_ID = found.id; return GIST_ID; }
+
+  // Create new gist
+  const create = await fetch('https://api.github.com/gists', {
     method: 'POST',
-    credentials: 'include',
-    body: JSON.stringify(body)
+    headers: GIST_HEADERS,
+    body: JSON.stringify({
+      description: 'GA Lecture Feedback Analyzer — shared reports storage',
+      public: false,
+      files: { [GIST_FILENAME]: { content: JSON.stringify([]) } }
+    })
   });
-  if (!resp.ok) throw new Error('HTTP ' + resp.status);
-  const data = await resp.json();
-  if (!data.ok) throw new Error(data.error || 'Apps Script error');
-  return data;
+  if (!create.ok) throw new Error('Не вдалось створити Gist');
+  const gist = await create.json();
+  GIST_ID = gist.id;
+  return GIST_ID;
 }
 
-// ── HISTORY ──────────────────────────────────────
+async function gistReadReports() {
+  const id = await findOrCreateGist();
+  const resp = await fetch(`https://api.github.com/gists/${id}`, { headers: GIST_HEADERS });
+  if (!resp.ok) throw new Error('GitHub API: ' + resp.status);
+  const gist = await resp.json();
+  const content = gist.files[GIST_FILENAME]?.content || '[]';
+  return JSON.parse(content);
+}
+
+async function gistWriteReports(reports) {
+  const id = await findOrCreateGist();
+  const resp = await fetch(`https://api.github.com/gists/${id}`, {
+    method: 'PATCH',
+    headers: GIST_HEADERS,
+    body: JSON.stringify({ files: { [GIST_FILENAME]: { content: JSON.stringify(reports) } } })
+  });
+  if (!resp.ok) throw new Error('Помилка запису в Gist');
+}
+
+// ── HISTORY ─────────────────────────────────────
 async function loadHistory() {
   const container = document.getElementById('history-list');
   container.innerHTML = '<div class="history-loading"><div class="spinner"></div> Завантаження архіву…</div>';
   try {
-    const reports = await sheetsGet();
+    const reports = await gistReadReports();
     renderHistory(reports);
   } catch(err) {
-    container.innerHTML = `<div class="history-empty"><div class="icon">⚠️</div><p>Не вдалось завантажити архів</p><p style="font-size:11px;color:var(--text-dim)">${err.message}</p><p style="font-size:11px;color:var(--text-dim)">Переконайся що ти залогінений у браузері під акаунтом @gen.tech</p></div>`;
+    container.innerHTML = `<div class="history-empty"><div class="icon">⚠️</div><p>Не вдалось завантажити архів</p><p style="font-size:11px;color:var(--text-dim)">${err.message}</p></div>`;
   }
 }
 
@@ -287,15 +298,14 @@ function renderHistory(reports) {
     const time = new Date(r.savedAt).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'});
     const score = r.programAvg?.composite != null ? (+r.programAvg.composite).toFixed(1) : '—';
     const lectCount = r.lectureStats?.length || 0;
-    const who = r.savedBy || '';
-    return `<div class="history-item" onclick="openReport(${JSON.stringify(r).replace(/"/g,'&quot;')})">
+    const dataStr = JSON.stringify(r).replace(/\\/g,'\\\\').replace(/"/g,'&quot;');
+    return `<div class="history-item" onclick='openReport(${JSON.stringify(r)})'>
       <div class="history-item-icon">📊</div>
       <div class="history-item-info">
         <div class="history-item-name">${r.filename}</div>
         <div class="history-item-meta">
           <span>📅 ${date}, ${time}</span>
           <span>📚 ${lectCount} лекцій</span>
-          ${who ? `<span class="history-item-who">👤 ${who}</span>` : ''}
         </div>
       </div>
       <div class="history-item-score">${score}</div>
@@ -316,119 +326,98 @@ function openReport(report) {
 
 async function deleteReport(id, e) {
   e.stopPropagation();
-  if (!confirm('Видалити цей звіт з архіву?')) return;
+  if (!confirm('Видалити цей звіт з архіву команди?')) return;
   try {
-    await sheetsPost({ action: 'delete', id });
+    const reports = await gistReadReports();
+    const updated = reports.filter(r => r.id !== id);
+    await gistWriteReports(updated);
     showToast('Звіт видалено', 'success');
-    loadHistory();
+    renderHistory(updated);
   } catch(err) {
-    showToast('Помилка видалення: ' + err.message, 'error');
+    showToast('Помилка: ' + err.message, 'error');
   }
 }
 
 async function saveCurrentReport() {
   if (!lectureStats.length) return;
   const btn = document.getElementById('save-btn');
-  if (btn) { btn.disabled = true; btn.textContent = '⏳ Зберігаємо…'; }
-
-  const report = {
-    id: Date.now().toString(),
-    filename: currentFilename,
-    savedAt: new Date().toISOString(),
-    savedBy: '', // браузер не знає email без auth — залишаємо порожнім
-    programAvg,
-    insightCache,
-    lectureStats: lectureStats.map(l => ({
-      name:l.name, score:l.score, responses:l.responses,
-      s1:l.s1, s2:l.s2, s3:l.s3, d1:l.d1, d2:l.d2, d3:l.d3
-    }))
-  };
-
+  if (btn) { btn.disabled=true; btn.textContent='⏳ Зберігаємо…'; }
   try {
-    await sheetsPost({ action: 'save', report });
+    const reports = await gistReadReports();
+    const report = {
+      id: Date.now().toString(),
+      filename: currentFilename,
+      savedAt: new Date().toISOString(),
+      programAvg,
+      insightCache,
+      lectureStats: lectureStats.map(l=>({
+        name:l.name, score:l.score, responses:l.responses,
+        s1:l.s1, s2:l.s2, s3:l.s3, d1:l.d1, d2:l.d2, d3:l.d3
+      }))
+    };
+    // update if same filename exists, else append
+    const idx = reports.findIndex(r => r.filename === currentFilename);
+    if (idx >= 0) reports[idx] = report; else reports.push(report);
+    await gistWriteReports(reports);
     showToast('Звіт збережено в архів команди ✓', 'success');
   } catch(err) {
     showToast('Помилка збереження: ' + err.message, 'error');
   } finally {
-    if (btn) { btn.disabled = false; btn.textContent = '💾 Зберегти звіт'; }
+    if (btn) { btn.disabled=false; btn.textContent='💾 Зберегти звіт'; }
   }
 }
 
 // ── UPLOAD ───────────────────────────────────────
-document.getElementById('file-input').addEventListener('change', e => {
-  if (e.target.files[0]) handleFile(e.target.files[0]);
-});
+document.getElementById('file-input').addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); });
 const dropZone = document.getElementById('drop-zone');
-dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop', e => {
-  e.preventDefault(); dropZone.classList.remove('drag-over');
-  if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
-});
+dropZone.addEventListener('dragover', e=>{e.preventDefault();dropZone.classList.add('drag-over');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
 
 function handleFile(file) {
   apiKey = document.getElementById('api-key-input').value.trim();
   const reader = new FileReader();
   reader.onload = e => {
     try {
-      const wb = XLSX.read(e.target.result, { type:'binary' });
-      allData = {};
-      wb.SheetNames.forEach(name => {
-        const rows = XLSX.utils.sheet_to_json(wb.Sheets[name], { defval:'' });
-        if (rows.length > 0) allData[name] = rows;
+      const wb = XLSX.read(e.target.result,{type:'binary'});
+      allData={};
+      wb.SheetNames.forEach(name=>{
+        const rows=XLSX.utils.sheet_to_json(wb.Sheets[name],{defval:''});
+        if(rows.length>0) allData[name]=rows;
       });
-      if (!Object.keys(allData).length) { showToast('Файл не містить даних','error'); return; }
-      currentFilename = file.name;
-      isReadonly = false;
-      insightCache = {};
-      buildStats();
-      showApp();
-    } catch(err) { showToast('Помилка читання файлу: ' + err.message,'error'); }
+      if(!Object.keys(allData).length){showToast('Файл не містить даних','error');return;}
+      currentFilename=file.name; isReadonly=false; insightCache={};
+      buildStats(); showApp();
+    } catch(err){showToast('Помилка читання: '+err.message,'error');}
   };
   reader.readAsBinaryString(file);
 }
 
 // ── STATS ────────────────────────────────────────
-function detectCol(row, candidates) {
-  const keys = Object.keys(row);
-  for (const c of candidates) {
-    const found = keys.find(k => k.toLowerCase().includes(c.toLowerCase()));
-    if (found) return found;
-  }
-  return null;
-}
-function colKey(rows, candidates) {
-  return (rows && rows.length) ? detectCol(rows[0], candidates) : null;
-}
-function distrib(rows, col, map) {
-  if (!col) return {};
-  const counts = {}; let total = 0;
-  rows.forEach(r => {
-    const v = (r[col]||'').toString().trim();
-    if (!v) return;
-    counts[v] = (counts[v]||0)+1; total++;
-  });
-  if (!total) return {};
-  const result = {};
-  Object.keys(map).forEach(k => { if (counts[k]) result[k]={count:counts[k],pct:Math.round(counts[k]/total*100)}; });
-  Object.keys(counts).forEach(k => { if (!result[k]) result[k]={count:counts[k],pct:Math.round(counts[k]/total*100)}; });
+function detectCol(row,candidates){const keys=Object.keys(row);for(const c of candidates){const f=keys.find(k=>k.toLowerCase().includes(c.toLowerCase()));if(f)return f;}return null;}
+function colKey(rows,candidates){return(rows&&rows.length)?detectCol(rows[0],candidates):null;}
+function distrib(rows,col,map){
+  if(!col)return{};const counts={};let total=0;
+  rows.forEach(r=>{const v=(r[col]||'').toString().trim();if(!v)return;counts[v]=(counts[v]||0)+1;total++;});
+  if(!total)return{};const result={};
+  Object.keys(map).forEach(k=>{if(counts[k])result[k]={count:counts[k],pct:Math.round(counts[k]/total*100)};});
+  Object.keys(counts).forEach(k=>{if(!result[k])result[k]={count:counts[k],pct:Math.round(counts[k]/total*100)};});
   return result;
 }
-function avgScore(rows, col, map) {
-  if (!col) return null;
-  let sum=0, count=0;
-  rows.forEach(r => { const v=(r[col]||'').toString().trim(); if(v && map[v]!==undefined){sum+=map[v];count++;} });
-  return count > 0 ? sum/count : null;
+function avgScore(rows,col,map){
+  if(!col)return null;let sum=0,count=0;
+  rows.forEach(r=>{const v=(r[col]||'').toString().trim();if(v&&map[v]!==undefined){sum+=map[v];count++;}});
+  return count>0?sum/count:null;
 }
-function buildStats() {
-  lectureStats = [];
-  Object.keys(allData).forEach(name => {
-    const rows = allData[name];
+function buildStats(){
+  lectureStats=[];
+  Object.keys(allData).forEach(name=>{
+    const rows=allData[name];
     const c1=colKey(rows,['Оцінка лекції','оцін']),c2=colKey(rows,['корисною','корисна','Наскільки']),c3=colKey(rows,['комфортно','лектором','взаємодія']);
     const d1=distrib(rows,c1,LECTURE_SCORE_MAP),d2=distrib(rows,c2,USEFUL_SCORE_MAP),d3=distrib(rows,c3,COMFORT_SCORE_MAP);
     const s1=avgScore(rows,c1,LECTURE_SCORE_MAP),s2=avgScore(rows,c2,USEFUL_SCORE_MAP),s3=avgScore(rows,c3,COMFORT_SCORE_MAP);
     const sc=[s1,s2,s3].filter(x=>x!==null);
-    const score = sc.length ? +(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2) : 0;
+    const score=sc.length?+(sc.reduce((a,b)=>a+b)/sc.length).toFixed(2):0;
     lectureStats.push({name,rows,score,responses:rows.length,c1,c2,c3,d1,d2,d3,s1,s2,s3});
   });
   lectureStats.sort((a,b)=>b.score-a.score);
@@ -445,7 +434,7 @@ function buildStats() {
 }
 
 // ── SCREENS ──────────────────────────────────────
-function showHome() {
+function showHome(){
   document.getElementById('home-screen').style.display='flex';
   document.getElementById('app').style.display='none';
   document.getElementById('header-title').textContent='Lecture Feedback Analyzer';
@@ -453,13 +442,12 @@ function showHome() {
   document.getElementById('file-input').value='';
   loadHistory();
 }
-
-function showApp() {
+function showApp(){
   document.getElementById('home-screen').style.display='none';
   document.getElementById('app').style.display='flex';
   document.getElementById('header-title').textContent=currentFilename;
   const el=document.getElementById('header-actions');
-  if (isReadonly) {
+  if(isReadonly){
     el.innerHTML=`<span class="readonly-badge">📁 З архіву</span><button class="btn btn-ghost" onclick="showHome()">← Головна</button>`;
   } else {
     el.innerHTML=`<button id="save-btn" class="btn btn-ghost btn-sm" onclick="saveCurrentReport()">💾 Зберегти звіт</button><button class="btn btn-ghost" onclick="showHome()">← Головна</button>`;
@@ -468,10 +456,10 @@ function showApp() {
 }
 
 // ── SIDEBAR ──────────────────────────────────────
-function fmtScore(s) { return s!=null?(+s).toFixed(1):'—'; }
-function scoreToColor(s) { return s>=3.5?'#2ECC71':s>=2?'#F39C12':'#E74C3C'; }
+function fmtScore(s){return s!=null?(+s).toFixed(1):'—';}
+function scoreToColor(s){return s>=3.5?'#2ECC71':s>=2?'#F39C12':'#E74C3C';}
 
-function renderSidebar() {
+function renderSidebar(){
   document.getElementById('program-avg').innerHTML=`
     <div class="avg-chip">🎯 <strong>${fmtScore(programAvg.composite)}/5</strong> загалом</div>
     <div class="avg-chip">📚 <strong>${fmtScore(programAvg.s1)}</strong> оцінка</div>
@@ -483,7 +471,7 @@ function renderSidebar() {
   lectureStats.forEach((lec,idx)=>{
     const barW=maxScore>0?Math.round(lec.score/maxScore*100):0;
     const div=document.createElement('div');
-    div.className='lecture-item'; div.dataset.name=lec.name;
+    div.className='lecture-item';div.dataset.name=lec.name;
     div.innerHTML=`<span class="lecture-rank">#${idx+1}</span>
       <div class="lecture-bar-wrap">
         <div class="lecture-name" title="${lec.name}">${lec.name}</div>
@@ -499,21 +487,17 @@ function renderSidebar() {
 }
 
 // ── LECTURE DETAIL ───────────────────────────────
-function selectLecture(name) {
+function selectLecture(name){
   activeSheet=name;
   document.querySelectorAll('.lecture-item').forEach(el=>el.classList.toggle('active',el.dataset.name===name));
   const lec=lectureStats.find(l=>l.name===name);
-  if (!lec) return;
+  if(!lec)return;
   const rank=lectureStats.findIndex(l=>l.name===name)+1;
   const delta=programAvg.composite!=null?(lec.score-programAvg.composite):null;
   const deltaHtml=delta!=null?`<span class="vs-avg-delta ${delta>0.1?'delta-pos':delta<-0.1?'delta-neg':'delta-neu'}">${delta>=0?'+':''}${delta.toFixed(2)} vs avg</span>`:'';
-
   document.getElementById('main-content').innerHTML=`
     <div class="lecture-header">
-      <div class="lecture-header-top">
-        <h2>${name}</h2>
-        <span class="response-badge">${lec.responses} відповідей</span>
-      </div>
+      <div class="lecture-header-top"><h2>${name}</h2><span class="response-badge">${lec.responses} відповідей</span></div>
       <div class="vs-avg-row">
         <span class="vs-avg-score">${(+lec.score).toFixed(2)}/5</span>
         ${deltaHtml}
@@ -529,31 +513,30 @@ function selectLecture(name) {
     </div>
     <div class="section-label">AI-інсайти</div>
     <div id="insights-block"></div>`;
-
-  if (insightCache[name]) {
+  if(insightCache[name]){
     document.getElementById('insights-block').innerHTML=insightCache[name];
-  } else if (apiKey && !isReadonly) {
+  } else if(apiKey&&!isReadonly){
     document.getElementById('insights-block').innerHTML=`<div class="insights-card"><div class="insights-loading"><div class="spinner"></div> Аналізую відгуки…</div></div>`;
     loadInsights(lec);
   } else {
-    document.getElementById('insights-block').innerHTML=`<div class="insights-card"><div class="no-api-notice">ℹ️ ${isReadonly?'AI-інсайти не були збережені для цієї лекції.':'Додай Anthropic API key для отримання AI-інсайтів.'}</div></div>`;
+    document.getElementById('insights-block').innerHTML=`<div class="insights-card"><div class="no-api-notice">ℹ️ ${isReadonly?'AI-інсайти не збережені для цієї лекції.':'Додай Anthropic API key для AI-інсайтів.'}</div></div>`;
   }
 }
 
-function buildRatingCard(title, distData) {
+function buildRatingCard(title,distData){
   const entries=Object.entries(distData||{});
-  if (!entries.length) return `<div class="rating-card"><div class="rating-card-title">${title}</div><p style="font-size:13px;color:var(--text-dim);font-style:italic">Немає даних</p></div>`;
+  if(!entries.length)return`<div class="rating-card"><div class="rating-card-title">${title}</div><p style="font-size:13px;color:var(--text-dim);font-style:italic">Немає даних</p></div>`;
   const rows=entries.map(([label,{pct}],i)=>`
     <div class="rating-row">
       <span class="rating-label" title="${label}">${label}</span>
       <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:${pct}%;background:${COL_COLORS[Math.min(i,4)]}"></div></div>
       <span class="rating-pct">${pct}%</span>
     </div>`).join('');
-  return `<div class="rating-card"><div class="rating-card-title">${title}</div>${rows}</div>`;
+  return`<div class="rating-card"><div class="rating-card-title">${title}</div>${rows}</div>`;
 }
 
 // ── AI INSIGHTS ──────────────────────────────────
-async function loadInsights(lec) {
+async function loadInsights(lec){
   const openCols=[
     colKey(lec.rows,['корисного дізна','навички','Що корисного']),
     colKey(lec.rows,['покращити лектору','варто покращити']),
@@ -563,54 +546,47 @@ async function loadInsights(lec) {
   const colNames=['Що корисного дізнались','Що покращити лектору','Нерозкриті питання','Коментарі'];
   let textData='';
   openCols.forEach((col,i)=>{
-    if (!col) return;
+    if(!col)return;
     const values=lec.rows.map(r=>(r[col]||'').toString().trim()).filter(Boolean);
-    if (values.length) textData+=`\n### ${colNames[i]}:\n${values.map(v=>`- ${v}`).join('\n')}\n`;
+    if(values.length)textData+=`\n### ${colNames[i]}:\n${values.map(v=>`- ${v}`).join('\n')}\n`;
   });
-
-  if (!textData.trim()) {
+  if(!textData.trim()){
     const html=`<div class="insights-card"><div class="no-api-notice">ℹ️ Текстових відгуків не знайдено.</div></div>`;
-    document.getElementById('insights-block').innerHTML=html;
-    insightCache[lec.name]=html; return;
+    document.getElementById('insights-block').innerHTML=html;insightCache[lec.name]=html;return;
   }
-
   const prompt=`Ти аналізуєш відгуки студентів на освітню лекцію.
 Лекція: "${lec.name}", відповідей: ${lec.responses}
-
 ${textData}
-
 Поверни ТІЛЬКИ валідний JSON:
 {"useful":["інсайт"],"improve":["рекомендація"],"uncovered":["тема"],"vibe":"загальний тон"}
-
-Правила: конкретно, українською, max 5 пунктів у масиві, порожній = [].`;
-
-  try {
+Правила: конкретно, українською, max 5 пунктів у масиві, порожній розділ = [].`;
+  try{
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})
     });
     const data=await resp.json();
-    if (!resp.ok) throw new Error(data.error?.message||'API error');
+    if(!resp.ok)throw new Error(data.error?.message||'API error');
     const parsed=JSON.parse(data.content.find(b=>b.type==='text')?.text.replace(/```json|```/g,'').trim());
     const html=buildInsightsHtml(parsed);
     document.getElementById('insights-block').innerHTML=html;
     insightCache[lec.name]=html;
-  } catch(err) {
+  }catch(err){
     const html=`<div class="insights-card"><div class="no-api-notice">⚠️ ${err.message}</div></div>`;
     document.getElementById('insights-block').innerHTML=html;
   }
 }
 
-function buildInsightsHtml(d) {
+function buildInsightsHtml(d){
   const sec=(title,icon,items)=>items?.length?`<div class="insights-section"><div class="insights-section-title"><span>${icon}</span>${title}</div><ul class="insights-list">${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`:'';
   const vibe=d.vibe?`<div class="insights-section"><div class="insights-section-title"><span>🌡</span>Загальний тон</div><p style="font-size:13px;color:var(--text);line-height:1.6">${d.vibe}</p></div>`:'';
-  return `<div class="insights-card">${sec('Що цінували студенти','✅',d.useful)}${sec('Що покращити лектору','🔧',d.improve)}${sec('Нерозкриті питання','❓',d.uncovered)}${vibe}</div>`;
+  return`<div class="insights-card">${sec('Що цінували студенти','✅',d.useful)}${sec('Що покращити лектору','🔧',d.improve)}${sec('Нерозкриті питання','❓',d.uncovered)}${vibe}</div>`;
 }
 
 // ── TOAST ────────────────────────────────────────
 let toastTimer=null;
-function showToast(msg,type='success') {
+function showToast(msg,type='success'){
   const el=document.getElementById('toast');
   el.className=`toast ${type}`;
   document.getElementById('toast-icon').textContent=type==='success'?'✓':'✕';
