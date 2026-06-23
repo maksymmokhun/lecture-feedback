@@ -354,24 +354,38 @@ function renderHistory(reports) {
     return;
   }
   const sorted = [...reports].sort((a,b) => b.savedAt.localeCompare(a.savedAt));
-  container.innerHTML = sorted.map(r => {
+  // Build cards safely — never inject insightCache HTML into the list
+  container.innerHTML = '';
+  sorted.forEach(r => {
     const date = new Date(r.savedAt).toLocaleDateString('uk-UA',{day:'numeric',month:'short',year:'numeric'});
     const time = new Date(r.savedAt).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'});
     const score = r.programAvg?.composite != null ? (+r.programAvg.composite).toFixed(1) : '—';
     const lectCount = r.lectureStats?.length || 0;
-    return `<div class="history-item" onclick='openReport(${JSON.stringify(r)})'>
+    const topLecture = r.lectureStats?.[0]?.name || '';
+
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    item.innerHTML = `
       <div class="history-item-icon">📊</div>
       <div class="history-item-info">
-        <div class="history-item-name">${r.filename}</div>
+        <div class="history-item-name"></div>
         <div class="history-item-meta">
           <span>📅 ${date}, ${time}</span>
           <span>📚 ${lectCount} лекцій</span>
+          ${topLecture ? `<span>🏆 <span class="top-lec"></span></span>` : ''}
         </div>
       </div>
       <div class="history-item-score">${score}</div>
-      <button class="history-item-delete" onclick="deleteReport('${r.id}',event)" title="Видалити">✕</button>
-    </div>`;
-  }).join('');
+      <button class="history-item-delete" title="Видалити">✕</button>`;
+
+    // Set text safely (no HTML injection)
+    item.querySelector('.history-item-name').textContent = r.filename;
+    if (topLecture) item.querySelector('.top-lec').textContent = topLecture;
+
+    item.querySelector('.history-item-delete').addEventListener('click', e => deleteReport(r.id, e));
+    item.addEventListener('click', () => openReport(r));
+    container.appendChild(item);
+  });
 }
 
 function openReport(report) {
